@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Argentina Experience 2026</title>
+<meta name="theme-color" content="#0B2545">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Argentina 2026">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);color-scheme:light}[hidden]{display:none!important}img{max-width:100%}
+/* Layout: sidebar editorial en escritorio, barra inferior de 5 apartados en móvil. Un solo acento (terracota) sobre azul profundo, arena y oro. */
+:root{
+  --bg:#F2ECE0; --surface:#FBF8F2; --surface2:#E9E1D1; --fg:#0E1E36; --muted:#5B6678; --line:#D8CEBB;
+  --navy:#0B2545; --navy2:#13335E; --terra:#B4532F; --terra-fg:#FFFFFF; --gold:#A97F2E; --goldsoft:#E4CD9A;
+  --ok:#2E7D4F; --warn:#B7791F; --bad:#B3392F; --okbg:#DDEEDF; --warnbg:#F6E7C6; --badbg:#F4D9D4;
+  --d1:#B4532F; --d2:#0B5C8A; --d3:#2E7D4F; --d4:#8A4F9E; --d5:#1B8A8A; --d6:#B7791F;
+  --f-disp:'Fraunces',Georgia,'Times New Roman',serif; --f-body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --nav-h:64px; --side-w:248px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A1527; --surface:#112340; --surface2:#17305A; --fg:#EEE8DA; --muted:#A3AEC2; --line:#27406B;
+  --navy:#0A1B33; --navy2:#17305A; --terra:#E0825E; --terra-fg:#1A0E08; --gold:#D8B46A; --goldsoft:#5B4A24;
+  --ok:#6FCB8E; --warn:#E4B35A; --bad:#EF8A7E; --okbg:#173B2A; --warnbg:#3F3216; --badbg:#4A211C;
+  --d1:#E0825E; --d2:#58B4E6; --d3:#6FCB8E; --d4:#C08AD6; --d5:#5FD0D0; --d6:#E4B35A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A1527; --surface:#112340; --surface2:#17305A; --fg:#EEE8DA; --muted:#A3AEC2; --line:#27406B;
+  --navy:#0A1B33; --navy2:#17305A; --terra:#E0825E; --terra-fg:#1A0E08; --gold:#D8B46A; --goldsoft:#5B4A24;
+  --ok:#6FCB8E; --warn:#E4B35A; --bad:#EF8A7E; --okbg:#173B2A; --warnbg:#3F3216; --badbg:#4A211C;
+  --d1:#E0825E; --d2:#58B4E6; --d3:#6FCB8E; --d4:#C08AD6; --d5:#5FD0D0; --d6:#E4B35A; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:auto}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5;margin:0;
+  padding-left:0;padding-right:0}
+h1,h2,h3{font-family:var(--f-disp);font-weight:600;line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:1.5rem} h3{font-size:1.15rem} p{margin:0}
+a{color:var(--terra)} button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+.tnum,.num{font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.muted{color:var(--muted)} .small{font-size:.85rem}
+
+/* shell */
+.shell{display:block;min-height:100vh}
+.side{display:none}
+main{padding-block:16px calc(var(--nav-h) + 28px + env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  max-width:1080px;margin-inline:auto;display:flex;flex-direction:column;gap:20px;min-width:0}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--navy);color:#F2ECE0;display:grid;grid-template-columns:repeat(5,1fr);
+  padding:6px max(6px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(6px,env(safe-area-inset-left,0px));border-top:2px solid var(--gold)}
+.bottom a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;text-decoration:none;color:#BFC8D8;font-size:.7rem;font-weight:500;border-radius:10px;min-height:48px}
+.bottom a[aria-current="page"]{color:#fff;background:rgba(255,255,255,.1)}
+.bottom svg,.side svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media (min-width:900px){
+  .shell{display:grid;grid-template-columns:var(--side-w) minmax(0,1fr)}
+  .side{display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;background:var(--navy);color:#F2ECE0;padding:28px 18px;border-right:3px solid var(--gold)}
+  .side .brand{font-family:var(--f-disp);font-size:1.35rem;line-height:1.1;margin-bottom:2px}
+  .side .brand small{display:block;font-family:var(--f-body);font-size:.68rem;letter-spacing:.16em;color:var(--goldsoft);margin-top:6px;text-transform:uppercase}
+  .side nav{display:flex;flex-direction:column;gap:4px;margin-top:22px}
+  .side nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;color:#CBD3E1;text-decoration:none;font-weight:500}
+  .side nav a[aria-current="page"]{background:rgba(255,255,255,.12);color:#fff}
+  .side .foot{margin-top:auto;font-size:.78rem;color:#9DA9BF}
+  .bottom{display:none}
+  main{padding-block:32px 48px;padding-left:32px;padding-right:32px}
+}
+
+/* components */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.flat{border:0;background:transparent;padding:0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row.between{justify-content:space-between}
+.stack{display:flex;flex-direction:column;gap:10px;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;text-decoration:none;color:var(--fg);font-weight:600;font-size:.9rem}
+.btn:hover{border-color:var(--gold)}
+.btn.pri{background:var(--terra);border-color:var(--terra);color:var(--terra-fg)}
+.btn.navy{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn.sm{min-height:36px;padding:5px 11px;font-size:.82rem}
+.btn.danger{color:var(--bad)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:.74rem;font-weight:700;background:var(--surface2);color:var(--fg);white-space:nowrap}
+.chip.ok{background:var(--okbg);color:var(--ok)} .chip.warn{background:var(--warnbg);color:var(--warn)} .chip.bad{background:var(--badbg);color:var(--bad)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.tabs button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:7px 14px;min-height:40px;cursor:pointer;font-weight:600;font-size:.85rem}
+.tabs button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.alert{display:flex;gap:10px;padding:11px 13px;border-radius:12px;background:var(--warnbg);color:var(--fg);border-left:4px solid var(--warn);font-size:.9rem}
+.alert.bad{background:var(--badbg);border-color:var(--bad)} .alert.ok{background:var(--okbg);border-color:var(--ok)}
+.alert b{display:block}
+.pending{color:var(--warn);font-weight:600}
+
+/* forms */
+.f{display:flex;flex-direction:column;gap:4px;font-size:.82rem;font-weight:600;min-width:0}
+.f span{color:var(--muted)}
+input,select,textarea{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-height:42px;width:100%;min-width:0}
+textarea{min-height:84px;resize:vertical}
+input[type=checkbox],input[type=radio]{width:20px;height:20px;min-height:0;accent-color:var(--terra)}
+.form{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
+.form .full{grid-column:1/-1}
+.checks{display:flex;flex-wrap:wrap;gap:8px 14px}
+.checks label{display:flex;gap:6px;align-items:center;font-weight:500;font-size:.88rem}
+.err{color:var(--bad);font-size:.82rem;font-weight:600}
+
+/* hero */
+.hero{border-radius:18px;overflow:hidden;background:var(--navy);color:#F7F1E4;position:relative;isolation:isolate}
+.hero svg.sky{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero .in{padding:22px 18px 18px;display:flex;flex-direction:column;gap:14px}
+.hero h1{font-family:var(--f-disp);font-size:clamp(1.9rem,6.5vw,3.2rem);line-height:1.02;font-weight:700;letter-spacing:-.02em}
+.hero .sub{color:#DCD3BE;max-width:34rem}
+.hero .dates{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.count{display:flex;gap:10px}
+.count div{background:rgba(7,18,36,.62);border:1px solid rgba(228,205,154,.5);border-radius:12px;padding:8px 12px;text-align:center;min-width:64px}
+.count b{display:block;font-family:var(--f-disp);font-size:1.7rem;line-height:1}
+.count span{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--goldsoft)}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (min-width:640px){.quick{grid-template-columns:repeat(6,1fr)}}
+.quick a,.quick button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px;border-radius:12px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--fg);font-size:.78rem;font-weight:600;cursor:pointer;text-align:center;min-height:76px}
+.quick svg{width:24px;height:24px;fill:none;stroke:var(--terra);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.quick .sos{background:var(--bad);color:#fff;border-color:var(--bad)} .quick .sos svg{stroke:#fff}
+.ring{width:84px;height:84px;flex:none}
+.dayrow{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}
+.dayrow:first-child{border-top:0}
+.dot{width:12px;height:12px;border-radius:50%;flex:none;margin-top:6px}
+.dnum{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;flex:none;font-family:var(--f-disp)}
+
+/* itinerary */
+.daychips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.daychips button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 12px;cursor:pointer;text-align:left;min-width:92px}
+.daychips button b{display:block;font-family:var(--f-disp);font-size:1.05rem}
+.daychips button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.item{display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.item.done .nm{text-decoration:line-through;color:var(--muted)}
+.leg{font-size:.8rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px}
+.ph{aspect-ratio:16/9;max-width:100%;border-radius:12px;background:var(--surface2);display:grid;place-items:center;overflow:hidden;position:relative}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph svg{width:100%;height:100%}
+.kv{display:grid;grid-template-columns:minmax(88px,34%) minmax(0,1fr);gap:6px 12px;font-size:.9rem}
+.kv dt{color:var(--muted);font-weight:600} .kv dd{margin:0;overflow-wrap:anywhere}
+
+/* map */
+.mapbox{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface2)}
+.mapbox svg{display:block;width:100%;height:auto;max-height:70vh}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+
+/* tables & charts */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td.r,th.r{text-align:right}
+.bar{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--terra);border-radius:99px}
+.bar.over i{background:var(--bad)}
+
+/* modal */
+#modal{position:fixed;inset:0;z-index:50;display:none}
+#modal.open{display:block}
+.scrim{position:absolute;inset:0;background:rgba(5,12,24,.62)}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:92vh;overflow:auto;background:var(--bg);border-radius:20px 20px 0 0;padding:18px max(16px,env(safe-area-inset-left,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:14px}
+@media (min-width:900px){.sheet{left:50%;right:auto;bottom:auto;top:50%;transform:translate(-50%,-50%);width:min(720px,92vw);max-height:88vh;border-radius:18px}}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--nav-h) + 20px + env(safe-area-inset-bottom,0px));background:var(--navy);color:#fff;padding:10px 16px;border-radius:99px;font-size:.88rem;z-index:60;display:none;max-width:90vw}
+@media (min-width:900px){#toast{bottom:24px}}
+.lock{min-height:100vh;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px));background:var(--navy);color:#F7F1E4}
+.lock .card{background:var(--surface);color:var(--fg);max-width:380px;width:100%}
+.banner{display:none;background:var(--warnbg);color:var(--fg);padding:8px 16px;font-size:.85rem;text-align:center}
+.banner.show{display:block}
+@media (prefers-reduced-motion:no-preference){.btn,.bottom a,.daychips button{transition:background .15s,border-color .15s}}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript>Esta aplicación necesita JavaScript.</noscript>
+<script>window.__STANDALONE=true;</script>
+<script>
+'use strict';
+/* ====== DATOS INICIALES ======
+   Regla del proyecto: tarifas, horarios, reservas y disponibilidad NO se inventan.
+   Todo dato sin confirmar queda como "Pendiente de confirmar" y se edita en Ajustes / ficha.
+   Las coordenadas son aproximadas (sirven para el mapa esquemático y los enlaces a Google Maps). */
+const PEND = 'Pendiente de confirmar';
+const MIN = (id, day, name, lat, lng, addr, desc, see, mins, best, tips, o) => Object.assign({
+  id, day, name, lat, lng, addr, desc, see, mins, best, tips,
+  time: '', hours: '', price: '', url: '', needs: 'verificar', alert: '', restr: '',
+  outdoor: true, region: 'ba', photoId: null
+}, o || {});
+
+const SEED_PLACES = [
+  // DÍA 1
+  MIN('p101',1,'Plaza de Mayo',-34.6083,-58.3712,'Plaza de Mayo, Monserrat (frente a la Casa Rosada)',
+    'Plaza fundacional y centro político de la ciudad. La rodean la Casa Rosada, el Cabildo y la Catedral.',
+    'La Pirámide de Mayo, la fachada de la Casa Rosada y los pañuelos blancos pintados en el piso.',60,'Tarde, con luz suave para fotos.','Zona muy transitada: cuida el celular y la billetera.',{needs:'no',time:'13:30'}),
+  MIN('p102',1,'Catedral Metropolitana',-34.6081,-58.3731,'Rivadavia 437, Monserrat',
+    'Templo principal de la arquidiócesis de Buenos Aires, con fachada neoclásica.',
+    'El mausoleo del General José de San Martín, las capillas laterales y el piso de mosaicos.',40,'Antes de media tarde.','Entrada a un lugar de culto: vestimenta respetuosa y silencio.',{outdoor:false,restr:'Lugar de culto: puede haber misas y horarios restringidos para visita.'}),
+  MIN('p103',1,'Centro histórico (Cabildo)',-34.6089,-58.3722,'Bolívar 65, Monserrat',
+    'El Cabildo fue sede del gobierno colonial. Hoy funciona como museo y es el corazón del casco histórico.',
+    'El patio interno y la arquitectura colonial entre edificios modernos.',45,'Mediodía o tarde.','Verifica en el sitio oficial si el museo abre el domingo.',{outdoor:false}),
+  MIN('p104',1,'Avenida de Mayo',-34.6091,-58.3800,'Avenida de Mayo, entre Plaza de Mayo y el Congreso',
+    'Avenida de inspiración europea inaugurada en 1894. Une la Casa Rosada con el Congreso.',
+    'Edificios art nouveau y art déco, cafés históricos y hoteles clásicos.',40,'Atardecer.','Camina por la vereda norte para ver las fachadas con mejor luz.'),
+  MIN('p105',1,'Café Tortoni',-34.6089,-58.3794,'Avenida de Mayo 825, Monserrat',
+    'Uno de los cafés notables más antiguos de la ciudad, abierto desde 1858.',
+    'El salón de columnas, los vitrales y las mesas de mármol. Prueba chocolate con churros.',60,'Merienda; evita la hora pico del fin de semana.','Suele haber fila en horas pico. Verifica si hay función de tango y su reserva.',{outdoor:false,needs:'verificar'}),
+  MIN('p106',1,'Obelisco',-34.6037,-58.3816,'Plaza de la República, Av. 9 de Julio y Av. Corrientes',
+    'Monumento de unos 67 m inaugurado en 1936, ícono de la ciudad.',
+    'La Avenida 9 de Julio, muy ancha, y la vista hacia Corrientes.',20,'Al caer la noche, cuando se ilumina.','No se sube de forma habitual; es para verlo y fotografiarlo.',{needs:'no'}),
+  MIN('p107',1,'Zona de teatros (Av. Corrientes)',-34.6040,-58.3855,'Avenida Corrientes entre Av. 9 de Julio y Callao',
+    'Corredor de teatros, librerías y pizzerías, conocido como la calle que nunca duerme.',
+    'Marquesinas de teatros, librerías abiertas hasta tarde y pizzerías clásicas.',50,'Noche.','Si quieren ver una obra, compra entradas con antelación (pendiente de elegir función).'),
+  MIN('p108',1,'Teatro Colón',-34.6010,-58.3830,'Cerrito 628, Retiro',
+    'Teatro de ópera inaugurado en 1908, reconocido por su acústica y su arquitectura.',
+    'La sala principal, el foyer, los vitrales y la escalera de honor.',60,'Según horario de visita guiada.','La visita es guiada. Confirma horarios, idiomas y reserva en el sitio oficial.',
+    {url:'https://teatrocolon.org.ar',outdoor:false,needs:'si',alert:'Visita guiada: confirma horario y compra de entrada en el sitio oficial.'}),
+  MIN('p109',1,'Cena y paseo nocturno por el centro',-34.6035,-58.3765,'Zona peatonal Florida / Lavalle (sugerencia editable)',
+    'Cierre del primer día con cena y caminata por las calles peatonales del microcentro.',
+    'Calle Florida, calle Lavalle y los teatros iluminados.',120,'Noche.','El restaurante es una decisión del grupo: edítalo en la ficha. Reserva si son varios.',{needs:'verificar',time:'20:00'}),
+  // DÍA 2
+  MIN('p201',2,'Mercado de San Telmo',-34.6213,-58.3712,'Defensa 963 / Carlos Calvo 477, San Telmo',
+    'Mercado cubierto de estructura de hierro, inaugurado en 1897.',
+    'Puestos de antigüedades, comida, cafés y la arquitectura del mercado.',60,'Mañana.','Revisa horarios: algunos puestos cierran temprano.',{outdoor:false,time:'10:00'}),
+  MIN('p202',2,'Plaza Dorrego',-34.6205,-58.3715,'Defensa y Humberto 1°, San Telmo',
+    'Plaza central de San Telmo, famosa por su feria dominical de antigüedades.',
+    'Cafés con mesas en la plaza y parejas bailando tango en la calle.',45,'Mañana.','La feria de antigüedades se hace los domingos. El 7 de diciembre es lunes: es probable que no haya feria.',
+    {alert:'La feria dominical no funciona los lunes. Si quieren verla, considera mover San Telmo al domingo 6.'}),
+  MIN('p203',2,'Estatua de Mafalda',-34.6192,-58.3717,'Defensa y Chile, San Telmo',
+    'Escultura de la tira de Quino, instalada en la esquina donde vivía el personaje en la historieta.',
+    'La banca con la estatua de Mafalda y las de Susanita y Manolito sobre Chile.',15,'Cualquier hora.','Foto rápida; suele haber fila corta.',{needs:'no'}),
+  MIN('p204',2,'Caminito',-34.6393,-58.3627,'Del Valle Iberlucea, La Boca',
+    'Pasaje museo al aire libre con casas de colores, vinculado al pintor Benito Quinquela Martín.',
+    'Fachadas de chapa pintada, artistas de calle y escultores.',60,'Mediodía o primera tarde.','Quédate en las calles turísticas y evita caminar por zonas aisladas. Muchos puestos piden propina o pago por foto.',
+    {needs:'no',alert:'La Boca: limita tu recorrido al área turística de Caminito y la Bombonera.'}),
+  MIN('p205',2,'Estadio La Bombonera',-34.6356,-58.3647,'Brandsen 805, La Boca',
+    'Estadio de Boca Juniors, inaugurado en 1940, de tribunas verticales muy cercanas a la cancha.',
+    'El estadio por fuera y, si hay entrada, el museo y el recorrido.',60,'Según horario del museo.','Confirma si el museo y el tour funcionan ese día y si requieren reserva.',{outdoor:false,needs:'verificar'}),
+  // DÍA 3 (Uruguay, campos configurables)
+  MIN('p301',3,'Traslado al puerto de Buenos Aires',null,null,'Según terminal elegida en el módulo Uruguay',
+    'Traslado desde el alojamiento hasta la terminal del ferry.',
+    'Calcula tiempos de llegada con margen para migración.',45,'Llegada anticipada según tu tiquete.','Confirma en tu reserva el horario mínimo de presentación.',{dyn:'port',needs:'verificar',alert:'8 de diciembre es feriado nacional en Argentina: puede haber horarios especiales.'}),
+  MIN('p302',3,'Embarque en ferry',null,null,'Terminal de salida (configurable)',
+    'Control migratorio y embarque.',
+    'Lleva el documento de viaje original y la reserva a mano.',60,'Según tiquete.','El horario y la empresa son campos que tú configuras. No hay datos inventados.',{dyn:'port',outdoor:false}),
+  MIN('p303',3,'Llegada a Uruguay',null,null,'Ciudad y puerto de llegada (configurables)',
+    'Llegada al puerto uruguayo y control migratorio de ingreso.',
+    'Cambia moneda solo si es necesario; aquí se registran gastos en UYU.',30,'Según tiquete.','Revisa requisitos migratorios en el módulo Uruguay.',{dyn:'dest',region:'ba'}),
+  MIN('p304',3,'Recorrido turístico',null,null,'Ciudad de destino en Uruguay',
+    'Recorrido por la ciudad elegida.',
+    'Lugares que registres en el módulo Uruguay.',180,'Según destino.','Define los lugares en el módulo Uruguay.',{}),
+  MIN('p305',3,'Visita a los lugares programados',null,null,'Lugares del módulo Uruguay',
+    'Visitas puntuales dentro de Uruguay.',
+    'Agrega cada lugar con su horario y costo.',120,'Según destino.','Pendiente de configurar.',{}),
+  MIN('p306',3,'Regreso a Buenos Aires',null,null,'Terminal de llegada en Buenos Aires (configurable)',
+    'Embarque de regreso y llegada a Buenos Aires.',
+    'Confirma el horario de la última salida.',60,'Según tiquete.','No te quedes sin margen: verifica el último ferry de regreso.',{dyn:'port',outdoor:false}),
+  // DÍA 4
+  MIN('p401',4,'Cementerio de la Recoleta',-34.5875,-58.3933,'Junín 1760, Recoleta',
+    'Necrópolis inaugurada en 1822, con mausoleos de estilos muy variados.',
+    'Los mausoleos monumentales, las calles estrechas y la tumba de Evita (familia Duarte).',75,'Mañana.','Hay que caminar bastante. Lleva calzado cómodo. Verifica horarios de apertura.',{needs:'no',time:'09:30'}),
+  MIN('p402',4,'Basílica Nuestra Señora del Pilar',-34.5875,-58.3926,'Junín 1904, Recoleta',
+    'Iglesia colonial de 1732, junto al cementerio.',
+    'El altar barroco y la fachada blanca.',25,'Antes o después del cementerio.','Lugar de culto: vestimenta respetuosa.',{outdoor:false}),
+  MIN('p403',4,'Floralis Genérica',-34.5827,-58.3941,'Plaza Naciones Unidas, Av. Figueroa Alcorta',
+    'Escultura de acero y aluminio del arquitecto Eduardo Catalano, regalada a la ciudad en 2002.',
+    'Sus pétalos metálicos gigantes sobre un espejo de agua.',20,'Atardecer.','Pregunta o verifica si sus pétalos están en movimiento: depende del estado de la obra.',{needs:'no'}),
+  MIN('p404',4,'Jardín Botánico Carlos Thays',-34.5815,-58.4165,'Av. Santa Fe 3951, Palermo',
+    'Jardín abierto en 1898 y diseñado por Carlos Thays, con invernaderos históricos y colecciones temáticas.',
+    'Los invernaderos de estilo francés, las especies exóticas y los gatos del jardín.',60,'Mañana o primera tarde.','Verifica horarios; suele ser de ingreso libre pero confirma.',{price:PEND}),
+  MIN('p405',4,'Jardín Japonés',-34.5764,-58.4108,'Av. Casares 3450, Palermo',
+    'Jardín inaugurado en 1967, uno de los más grandes de este tipo fuera de Japón.',
+    'El puente rojo, el lago con carpas y la casa de té.',60,'Tarde.','Se paga entrada y hay horarios definidos. Confirma tarifa y cierre.',{price:PEND,needs:'verificar'}),
+  MIN('p406',4,'El Rosedal de Palermo',-34.5731,-58.4180,'Av. de la Infanta Isabel, Palermo',
+    'Parque de rosas inaugurado en 1914, dentro de los Bosques de Palermo.',
+    'El lago, el puente blanco y los rosales (diciembre suele ser buena época de flores).',50,'Tarde.','Lleva sombrero y agua si hace calor.',{needs:'no'}),
+  MIN('p407',4,'Palermo Soho',-34.5880,-58.4300,'Plaza Serrano (Jorge Luis Borges y Serrano), Palermo',
+    'Barrio de moda con boutiques, bares y calles empedradas.',
+    'Tiendas de diseñadores, murales y cafés al aire libre.',90,'Tarde y noche.','Zona para caminar; cuida tus pertenencias en lugares concurridos.',{needs:'no'}),
+  MIN('p408',4,'El Ateneo Grand Splendid',-34.5958,-58.3938,'Av. Santa Fe 1860, Recoleta',
+    'Antiguo teatro de 1919 convertido en librería: una de las más bellas del mundo.',
+    'La cúpula pintada, los palcos y el escenario convertido en café.',45,'Mañana, para evitar multitudes.','Suele haber gente: llega temprano.',{outdoor:false,needs:'no'}),
+  // DÍA 5 (Iguazú)
+  MIN('p501',5,'Traslado al aeropuerto',-34.5592,-58.4156,'Aeroparque Jorge Newbery (confirma si tu vuelo sale de AEP o EZE)',
+    'Traslado al aeropuerto de salida.',
+    'Llega con anticipación y lleva documentos.',60,'Según tu vuelo.','Registra tu vuelo en Mi viaje > Transporte. Si sale de Ezeiza, cambia las coordenadas en la ficha.',
+    {outdoor:false,alert:'Confirma aeropuerto (Aeroparque o Ezeiza) y horario de tu vuelo.'}),
+  MIN('p502',5,'Vuelo hacia Puerto Iguazú',null,null,'Aeropuerto Internacional Cataratas del Iguazú (IGR)',
+    'Vuelo a Puerto Iguazú (provincia de Misiones).',
+    'Código de reserva, equipaje y terminal quedan registrados en Transporte.',120,'Según tu vuelo.','Pendiente de registrar el vuelo.',{outdoor:false,region:'ig',needs:'si'}),
+  MIN('p503',5,'Parque Nacional Iguazú (ingreso)',-25.6865,-54.4447,'Ruta Nacional 12, Puerto Iguazú, Misiones',
+    'Parque Nacional y Patrimonio Natural de la Humanidad (UNESCO). Entrada principal y Centro de Visitantes.',
+    'El Centro de Visitantes y la estación del tren ecológico.',30,'Llega temprano para evitar calor y multitudes.','Compra entradas con anticipación y confirma horarios y estado de los senderos.',
+    {region:'ig',needs:'si',url:'https://www.argentina.gob.ar/parquesnacionales',price:PEND,hours:PEND}),
+  MIN('p504',5,'Garganta del Diablo',-25.6953,-54.4366,'Circuito Garganta del Diablo, Parque Nacional Iguazú',
+    'Pasarela hasta el mirador de la mayor caída del conjunto, accesible en el tren ecológico.',
+    'El estruendo del agua y la vista de la caída desde arriba.',60,'Temprano.','Puede cerrar por crecida del río. Estado: pendiente de confirmar.',
+    {region:'ig',needs:'si',alert:'La pasarela de la Garganta del Diablo puede cerrar por crecida del río. Confirma el día.'}),
+  MIN('p505',5,'Circuito Superior',-25.6890,-54.4385,'Circuito Superior, Parque Nacional Iguazú',
+    'Pasarelas por la parte alta de las cataratas con vistas laterales.',
+    'Miradores sobre las caídas y el río arriba.',75,'Mañana o tarde.','Estado y accesibilidad: pendiente de confirmar.',{region:'ig',needs:'si'}),
+  MIN('p506',5,'Circuito Inferior',-25.6905,-54.4402,'Circuito Inferior, Parque Nacional Iguazú',
+    'Recorrido por la parte baja, más cerca de la base de las cascadas.',
+    'Miradores a nivel del agua y vegetación selvática.',90,'Mañana o tarde.','Estado y accesibilidad: pendiente de confirmar.',{region:'ig',needs:'si'}),
+  MIN('p507',5,'Regreso a Buenos Aires',-25.7373,-54.4734,'Aeropuerto Internacional Cataratas del Iguazú (IGR)',
+    'Traslado al aeropuerto de Iguazú y vuelo de regreso.',
+    'Llega con margen para el check-in.',120,'Según tu vuelo.','Confirma horarios del vuelo de regreso.',{region:'ig',outdoor:false,needs:'si'}),
+  // DÍA 6
+  MIN('p601',6,'Reserva Ecológica Costanera Sur',-34.6135,-58.3555,'Av. Tristán Achával Rodríguez 1550, Puerto Madero',
+    'Gran reserva natural frente al Río de la Plata, a minutos del centro.',
+    'Senderos, lagunas y aves. Diciembre es temporada cálida: lleva agua y repelente.',90,'Mañana.','Verifica horarios y si hay cierre por lluvia.',{needs:'verificar',time:'09:30'}),
+  MIN('p602',6,'Costanera Sur',-34.6100,-58.3550,'Costanera Sur, Puerto Madero',
+    'Paseo costero junto al Río de la Plata.',
+    'Vistas del río y espacios para caminar y andar en bici.',40,'Mañana o atardecer.','Hay poca sombra: protector solar.',{needs:'no'}),
+  MIN('p603',6,'Fragata Sarmiento',-34.6078,-58.3650,'Dique 3, Puerto Madero',
+    'Buque escuela botado en 1897, hoy museo flotante.',
+    'La cubierta, los mástiles y los camarotes de época.',45,'Según horario de visita.','Verifica horarios y si requiere reserva.',{needs:'verificar',price:PEND,hours:PEND}),
+  MIN('p604',6,'Puente de la Mujer',-34.6085,-58.3636,'Dique 3, Puerto Madero',
+    'Puente giratorio diseñado por Santiago Calatrava e inaugurado en 2001.',
+    'La silueta que evoca una pareja bailando tango.',20,'Atardecer.','Foto y paseo; no requiere entrada.',{needs:'no'}),
+  MIN('p605',6,'Muelles de Puerto Madero',-34.6090,-58.3642,'Diques y muelles, Puerto Madero',
+    'Antiguos depósitos portuarios convertidos en paseo.',
+    'Ladrillo rojo, diques y barcos amarrados.',45,'Tarde.','Zona de paseo peatonal.',{needs:'no'}),
+  MIN('p606',6,'Restaurantes de Puerto Madero',-34.6120,-58.3640,'Av. Alicia Moreau de Justo, Puerto Madero',
+    'Cierre del viaje con una cena frente a los diques.',
+    'Parrillas y cocina internacional frente al agua.',120,'Noche.','Elige y reserva según presupuesto. Los precios son pendientes de confirmar.',{needs:'verificar',time:'20:00'})
+];
+
+const SEED_DAYS = [
+  {n:1,date:'2026-12-06',title:'Centro histórico y microcentro',dow:'Domingo 6 de diciembre',note:'Inicio del recorrido después del mediodía.',items:['p101','p102','p103','p104','p105','p106','p107','p108','p109']},
+  {n:2,date:'2026-12-07',title:'San Telmo y La Boca',dow:'Lunes 7 de diciembre',note:'',items:['p201','p202','p203','p204','p205']},
+  {n:3,date:'2026-12-08',title:'Excursión a Uruguay en ferry',dow:'Martes 8 de diciembre',note:'Destino, puerto, empresa y horarios se configuran en Mi viaje > Uruguay.',fixed:true,items:['p301','p302','p303','p304','p305','p306']},
+  {n:4,date:'2026-12-09',title:'Recoleta y Palermo',dow:'Miércoles 9 de diciembre',note:'Circuito cultural y parques.',items:['p401','p402','p403','p404','p405','p406','p407','p408']},
+  {n:5,date:'2026-12-10',title:'Cataratas del Iguazú',dow:'Jueves 10 de diciembre',note:'Vuelo ida y vuelta en el día.',fixed:true,items:['p501','p502','p503','p504','p505','p506','p507']},
+  {n:6,date:'2026-12-11',title:'Puerto Madero y Reserva Ecológica',dow:'Viernes 11 de diciembre',note:'',items:['p601','p602','p603','p604','p605','p606']}
+];
+
+const RAIN_ALTS = {
+  1:[{name:'Galerías Pacífico',lat:-34.5993,lng:-58.3748,note:'Centro comercial histórico con cúpula pintada. Verifica horarios.'},{name:'Palacio Barolo',lat:-34.6093,lng:-58.3891,note:'Edificio emblemático de Av. de Mayo. Visitas guiadas: confirmar.'}],
+  2:[{name:'Museo Histórico Nacional',lat:-34.6269,lng:-58.3695,note:'Parque Lezama, cerca de San Telmo. Confirmar días de apertura.'}],
+  4:[{name:'Museo Nacional de Bellas Artes',lat:-34.5840,lng:-58.3930,note:'Arte argentino y europeo. Confirmar horarios.'},{name:'MALBA',lat:-34.5772,lng:-58.4036,note:'Arte latinoamericano. Confirmar horarios y tarifa.'},{name:'Centro Cultural Recoleta',lat:-34.5879,lng:-58.3932,note:'Junto al cementerio. Confirmar exposiciones.'}],
+  6:[{name:'Colección de Arte Amalia Lacroze de Fortabat',lat:-34.6110,lng:-58.3647,note:'Museo en Puerto Madero. Confirmar horarios.'}],
+  5:[]
+};
+
+const URY_PORTS = [
+  {k:'buq',n:'Buquebus: terminal Dársena Norte (Av. Antártida Argentina 821)',lat:-34.5996,lng:-58.3673},
+  {k:'cex',n:'Colonia Express: terminal Dársena Sur (Pedro de Mendoza)',lat:-34.6143,lng:-58.3665}
+];
+const URY_DESTS = [
+  {k:'col',n:'Colonia del Sacramento',lat:-34.4714,lng:-57.8442},
+  {k:'mvd',n:'Montevideo',lat:-34.9011,lng:-56.1645}
+];
+
+const CHECK_SEED = {
+  'Documentación':['Pasaporte o documento válido','Tiquetes','Reservas','Seguro de viaje','Documentos migratorios'],
+  'Equipaje':['Ropa','Calzado cómodo','Chaqueta ligera','Paraguas o impermeable','Protector solar','Gafas de sol','Cargadores','Adaptadores','Artículos de aseo'],
+  'Preparación':['Revisar reservas','Confirmar ferry','Confirmar vuelos a Iguazú','Comprar entradas','Verificar horarios','Organizar dinero','Descargar mapas']
+};
+const CATS = ['Vuelos internacionales','Vuelos nacionales','Ferry','Alojamiento','Alimentación','Transporte','Entradas turísticas','Compras','Seguros','Gastos imprevistos'];
+const BOOK_CATS = ['Vuelo','Alojamiento','Ferry','Entrada turística','Seguro de viaje','Traslado','Restaurante','Otro'];
+const DOC_TYPES = ['Pasaporte','Documento de identidad','Tiquete aéreo','Reserva hotelera','Reserva de ferry','Entrada turística','Seguro de viaje','Comprobante de pago','Dirección de alojamiento','Teléfono importante','Otro'];
+const MIG_ITEMS = [
+  ['doc','Documento de viaje vigente (revisa la vigencia mínima exigida)'],
+  ['arg','Requisito de ingreso a Argentina verificado para esta nacionalidad'],
+  ['uy','Requisito de ingreso a Uruguay verificado para esta nacionalidad'],
+  ['ret','Comprobante de salida o tiquete de regreso a mano'],
+  ['seg','Seguro médico de viaje a mano'],
+  ['men','Permisos adicionales si hay menores de edad en el grupo']
+];
+
+function SEED() {
+  const places = {};
+  SEED_PLACES.forEach(p => places[p.id] = JSON.parse(JSON.stringify(p)));
+  const checklist = {};
+  let n = 0;
+  Object.keys(CHECK_SEED).forEach(g => { checklist[g] = CHECK_SEED[g].map(t => ({id: 'c' + (++n), text: t, done: false})); });
+  const budgets = {};
+  CATS.forEach(c => budgets[c] = 0);
+  return {
+    v: 1, pin: null,
+    trip: {name: 'ARGENTINA EXPERIENCE 2026', start: '2026-12-06', end: '2026-12-11'},
+    travelers: [], days: JSON.parse(JSON.stringify(SEED_DAYS)), places, done: {}, prevOrder: {},
+    uy: {city: '', portK: '', port: null, destK: '', dest: null, company: '', out: '', back: '', res: '', notes: '', sights: []},
+    flights: [], bookings: [], expenses: [], budgets, checklist, mig: {}, diary: [], contacts: [], docs: [],
+    weather: null, rates: null, igStatus: {}
+  };
+}
+
+'use strict';
+/* ====== NÚCLEO: estado, base de datos local, utilidades, mapa, clima, divisas ====== */
+let S = null;
+const ui = {day: 1, tab: 'reservas', modal: null, unlocked: false, map: 'all', mapSel: null, q: '', exView: 'cat', me: null, rain: {}, confirmReset: false};
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const uid = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+/* ---- base de datos: IndexedDB con respaldo en memoria ---- */
+const DB = {
+  db: null, mem: {kv: {}, files: {}}, persistent: false,
+  async open() {
+    try {
+      if (!window.indexedDB) throw 0;
+      this.db = await new Promise((ok, no) => {
+        const r = indexedDB.open('argexp2026', 1);
+        r.onupgradeneeded = () => { const d = r.result; d.createObjectStore('kv'); d.createObjectStore('files'); };
+        r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); r.onblocked = () => no(0);
+      });
+      this.persistent = true;
+    } catch (e) { this.db = null; this.persistent = false; }
+  },
+  req(store, mode, fn) {
+    return new Promise((ok, no) => {
+      try {
+        const t = this.db.transaction(store, mode); const rq = fn(t.objectStore(store));
+        t.oncomplete = () => ok(rq ? rq.result : undefined); t.onerror = () => no(t.error); t.onabort = () => no(t.error);
+      } catch (e) { no(e); }
+    });
+  },
+  async get(store, key) { if (!this.db) return this.mem[store][key]; try { return await this.req(store, 'readonly', s => s.get(key)); } catch (e) { return this.mem[store][key]; } },
+  async put(store, key, val) { if (!this.db) { this.mem[store][key] = val; return; } try { await this.req(store, 'readwrite', s => s.put(val, key)); } catch (e) { this.mem[store][key] = val; } },
+  async del(store, key) { delete this.mem[store][key]; if (this.db) { try { await this.req(store, 'readwrite', s => s.delete(key)); } catch (e) {} } }
+};
+let saveT = null;
+function save() { clearTimeout(saveT); saveT = setTimeout(() => DB.put('kv', 'state', JSON.parse(JSON.stringify(S))), 200); }
+async function loadState() {
+  await DB.open();
+  const saved = await DB.get('kv', 'state');
+  S = Object.assign(SEED(), saved || {});
+  if (!S.igStatus) S.igStatus = {};
+}
+
+/* ---- seguridad local: PIN con hash (protege el acceso casual a la app en este dispositivo) ---- */
+async function sha(txt) {
+  try {
+    const h = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt));
+    return Array.from(new Uint8Array(h)).map(x => x.toString(16).padStart(2, '0')).join('');
+  } catch (e) { let h = 5381; for (const c of txt) h = ((h << 5) + h + c.charCodeAt(0)) | 0; return 'd' + (h >>> 0).toString(16); }
+}
+
+/* ---- fechas, dinero, distancias ---- */
+const pd = s => { const a = s.split('-').map(Number); return new Date(a[0], a[1] - 1, a[2]); };
+const today0 = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+const daysTo = s => Math.round((pd(s) - today0()) / 864e5);
+const fdate = s => pd(s).toLocaleDateString('es-CO', {weekday: 'short', day: 'numeric', month: 'short'});
+const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+function money(n, cur) {
+  cur = cur || 'COP'; if (n == null || isNaN(n)) return '—';
+  try { return new Intl.NumberFormat('es-CO', {style: 'currency', currency: cur, maximumFractionDigits: cur === 'USD' ? 2 : 0}).format(n); }
+  catch (e) { return cur + ' ' + Math.round(n); }
+}
+function toCOP(amount, cur) {
+  if (cur === 'COP') return amount;
+  const r = S.rates && S.rates.r && S.rates.r[cur]; return r ? amount / r : null;
+}
+function km(a, b) {
+  const R = 6371, t = x => x * Math.PI / 180, dLa = t(b.lat - a.lat), dLo = t(b.lng - a.lng);
+  const h = Math.sin(dLa / 2) ** 2 + Math.cos(t(a.lat)) * Math.cos(t(b.lat)) * Math.sin(dLo / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+const STREET = 1.3;
+const walkMin = k => Math.max(1, Math.round(k * STREET * 12));
+const carMin = k => Math.max(4, Math.round(k * STREET * 60 / 22));
+const transitMin = k => k < 0.7 ? walkMin(k) : Math.round(k * STREET * 60 / 14 + 8);
+const fm = m => m >= 60 ? Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0') + ' min' : m + ' min';
+const hhmm = m => String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(Math.round(m) % 60).padStart(2, '0');
+const toMin = t => { const a = (t || '').split(':'); return a.length === 2 && !isNaN(a[0]) ? (+a[0]) * 60 + (+a[1]) : null; };
+
+/* ---- lugares ---- */
+function C(p) {
+  if (!p) return null;
+  if (p.dyn === 'port') return S.uy.port;
+  if (p.dyn === 'dest') return S.uy.dest;
+  return p.lat != null && p.lng != null && p.lat !== '' ? {lat: +p.lat, lng: +p.lng} : null;
+}
+const dayOf = n => S.days.find(d => d.n === +n);
+const dayPlaces = d => d.items.map(id => S.places[id]).filter(Boolean);
+function totalKm(list) {
+  let t = 0, prev = null;
+  list.forEach(p => { const c = C(p); if (c) { if (prev) t += km(prev, c); prev = c; } });
+  return t;
+}
+const gdir = (pts, mode) => {
+  const o = pts[0], d = pts[pts.length - 1], wp = pts.slice(1, -1).map(p => p.lat + ',' + p.lng).join('|');
+  return 'https://www.google.com/maps/dir/?api=1&origin=' + o.lat + ',' + o.lng + '&destination=' + d.lat + ',' + d.lng + (wp ? '&waypoints=' + encodeURIComponent(wp) : '') + '&travelmode=' + mode;
+};
+const gplace = p => { const c = C(p); return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c ? c.lat + ',' + c.lng : p.name + ', ' + (p.region === 'ig' ? 'Puerto Iguazú' : 'Buenos Aires')); };
+const gfood = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('restaurantes cerca de ' + p.name + ', ' + (p.region === 'ig' ? 'Puerto Iguazú' : 'Buenos Aires'));
+
+/* ---- mapa esquemático en SVG (funciona sin conexión; no usa teselas externas) ---- */
+function niceKm(x) { const c = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 200]; for (const v of c) if (v >= x) return v; return 500; }
+function mapSVG(groups, opts) {
+  opts = opts || {};
+  const W = 640, H = 440, pad = 46;
+  const pts = []; groups.forEach(g => g.pts.forEach(o => { const c = C(o.p); if (c) pts.push(c); }));
+  if (!pts.length) return '<div class="mapbox muted" style="padding:28px;text-align:center">Sin coordenadas para mostrar. Edita el lugar o configura el módulo Uruguay.</div>';
+  let me = ui.me; if (me && pts.some(c => km(c, me) < 40)) pts.push(me); else me = null;
+  let mnLa = Math.min(...pts.map(c => c.lat)), mxLa = Math.max(...pts.map(c => c.lat));
+  let mnLo = Math.min(...pts.map(c => c.lng)), mxLo = Math.max(...pts.map(c => c.lng));
+  if (mxLa - mnLa < 0.004) { mnLa -= 0.003; mxLa += 0.003; }
+  if (mxLo - mnLo < 0.004) { mnLo -= 0.003; mxLo += 0.003; }
+  const ls = Math.cos((mnLa + mxLa) / 2 * Math.PI / 180);
+  const dx = (mxLo - mnLo) * ls, dy = mxLa - mnLa;
+  const sc = Math.min((W - 2 * pad) / dx, (H - 2 * pad) / dy);
+  const ox = (W - dx * sc) / 2, oy = (H - dy * sc) / 2;
+  const X = lo => ox + (lo - mnLo) * ls * sc, Y = la => oy + (mxLa - la) * sc;
+  let s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Mapa esquemático del recorrido"><rect width="' + W + '" height="' + H + '" fill="var(--surface2)"/>';
+  for (let i = 1; i < 6; i++) s += '<line x1="' + (W / 6 * i) + '" y1="0" x2="' + (W / 6 * i) + '" y2="' + H + '" stroke="var(--line)" stroke-width="1" opacity=".6"/>';
+  for (let i = 1; i < 4; i++) s += '<line x1="0" y1="' + (H / 4 * i) + '" x2="' + W + '" y2="' + (H / 4 * i) + '" stroke="var(--line)" stroke-width="1" opacity=".6"/>';
+  groups.forEach(g => {
+    const cs = g.pts.map(o => C(o.p)).filter(Boolean);
+    if (cs.length > 1) s += '<polyline points="' + cs.map(c => X(c.lng).toFixed(1) + ',' + Y(c.lat).toFixed(1)).join(' ') + '" fill="none" stroke="' + g.color + '" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"' + (g.dash ? ' stroke-dasharray="7 6"' : '') + ' opacity=".85"/>';
+  });
+  const seen = {};
+  groups.forEach(g => g.pts.forEach(o => {
+    const c = C(o.p); if (!c) return;
+    const key = c.lat.toFixed(5) + ',' + c.lng.toFixed(5);
+    if (seen[key]) { seen[key].nums.push(o.n); return; }
+    seen[key] = {c, nums: [o.n], color: g.color, p: o.p};
+  }));
+  Object.keys(seen).forEach(k => {
+    const m = seen[k], x = X(m.c.lng), y = Y(m.c.lat), lab = m.nums.join('·');
+    const w = Math.max(26, 10 + lab.length * 8), sel = ui.mapSel === m.p.id;
+    const nm = m.p.name.length > 24 ? m.p.name.slice(0, 23) + '…' : m.p.name;
+    const lx = x > W - 170 ? x - w / 2 - 6 : x + w / 2 + 6, anchor = x > W - 170 ? 'end' : 'start';
+    s += '<g data-act="selmap" data-id="' + m.p.id + '" tabindex="0" role="button" aria-label="' + esc(m.p.name) + '" style="cursor:pointer">' +
+      '<rect x="' + (x - w / 2) + '" y="' + (y - 13) + '" width="' + w + '" height="26" rx="13" fill="' + m.color + '" stroke="' + (sel ? 'var(--fg)' : 'var(--surface)') + '" stroke-width="' + (sel ? 3 : 2) + '"/>' +
+      '<text x="' + x + '" y="' + (y + 4.5) + '" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" style="font-family:var(--f-body)">' + lab + '</text>' +
+      '<text x="' + lx + '" y="' + (y + 4) + '" text-anchor="' + anchor + '" font-size="11.5" fill="var(--fg)" stroke="var(--surface2)" stroke-width="3.5" paint-order="stroke" style="font-family:var(--f-body)">' + esc(nm) + '</text></g>';
+  });
+  if (me) s += '<circle cx="' + X(me.lng) + '" cy="' + Y(me.lat) + '" r="9" fill="#2B7BE4" stroke="#fff" stroke-width="3"/><text x="' + (X(me.lng) + 13) + '" y="' + (Y(me.lat) + 4) + '" font-size="11.5" fill="var(--fg)" stroke="var(--surface2)" stroke-width="3.5" paint-order="stroke">Tú</text>';
+  const kmpx = 111.32 / sc, bk = niceKm(kmpx * 90), bw = bk / kmpx;
+  s += '<g transform="translate(16,' + (H - 18) + ')"><line x1="0" y1="0" x2="' + bw + '" y2="0" stroke="var(--fg)" stroke-width="3"/><text x="0" y="-6" font-size="11" fill="var(--fg)">' + (bk < 1 ? bk * 1000 + ' m' : bk + ' km') + '</text></g>';
+  s += '<g transform="translate(' + (W - 28) + ',30)"><path d="M0 -14 L7 8 L0 3 L-7 8Z" fill="var(--fg)"/><text x="0" y="22" text-anchor="middle" font-size="11" fill="var(--fg)">N</text></g>';
+  s += '</svg>';
+  return '<div class="mapbox">' + s + '</div>';
+}
+
+/* ---- clima (Open-Meteo, sin clave) y divisas (open.er-api.com, sin clave). Requieren conexión. ---- */
+const CITIES = {ba: {n: 'Buenos Aires', lat: -34.6037, lng: -58.3816}, ig: {n: 'Puerto Iguazú', lat: -25.5991, lng: -54.5736}};
+async function jfetch(url) {
+  const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 9000);
+  try { const r = await fetch(url, {signal: ctl.signal}); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); }
+  finally { clearTimeout(t); }
+}
+async function loadWeather() {
+  const out = {ts: Date.now()};
+  for (const k of Object.keys(CITIES)) {
+    const c = CITIES[k];
+    const u = 'https://api.open-meteo.com/v1/forecast?latitude=' + c.lat + '&longitude=' + c.lng +
+      '&daily=temperature_2m_max,temperature_2m_min,apparent_temperature_max,precipitation_probability_max,wind_speed_10m_max,uv_index_max' +
+      '&hourly=relative_humidity_2m&timezone=auto&forecast_days=16';
+    const j = await jfetch(u), d = j.daily, hum = {};
+    j.hourly.time.forEach((t, i) => { const dt = t.slice(0, 10); (hum[dt] = hum[dt] || []).push(j.hourly.relative_humidity_2m[i]); });
+    out[k] = {};
+    d.time.forEach((t, i) => {
+      const h = hum[t] || []; out[k][t] = {tmax: d.temperature_2m_max[i], tmin: d.temperature_2m_min[i], feel: d.apparent_temperature_max[i],
+        pop: d.precipitation_probability_max[i], wind: d.wind_speed_10m_max[i], uv: d.uv_index_max[i], hum: h.length ? Math.round(h.reduce((a, b) => a + b, 0) / h.length) : null};
+    });
+  }
+  S.weather = out; save();
+}
+async function loadRates() {
+  const j = await jfetch('https://open.er-api.com/v6/latest/COP');
+  if (!j || !j.rates) throw new Error('sin datos');
+  S.rates = {ts: Date.now(), r: {USD: j.rates.USD, ARS: j.rates.ARS, UYU: j.rates.UYU}}; save();
+}
+function clothing(w, city) {
+  const o = [];
+  if (w.tmax >= 30) o.push('Ropa muy ligera y transpirable, sombrero o gorra.');
+  else if (w.tmax >= 22) o.push('Ropa fresca de algodón o lino.');
+  else o.push('Capas: camiseta y chaqueta o suéter.');
+  if (w.tmin != null && w.tmin < 16) o.push('Lleva chaqueta ligera para la noche.');
+  if (w.pop >= 40) o.push('Impermeable o paraguas y calzado cerrado que no resbale.');
+  if (w.uv >= 8) o.push('Protector solar FPS 50+ y gafas de sol.'); else if (w.uv >= 5) o.push('Protector solar y gafas de sol.');
+  if (city === 'ig') o.push('Repelente, ropa de secado rápido y funda para el celular.');
+  return o;
+}
+function wAlerts(w) {
+  const a = [];
+  if (w.pop >= 60) a.push('Probabilidad alta de lluvia: considera reorganizar para actividades bajo techo.');
+  if (w.tmax >= 33 || (w.feel != null && w.feel >= 35)) a.push('Calor intenso: hidrátate y evita caminar al mediodía.');
+  if (w.wind >= 40) a.push('Viento fuerte: puede afectar el ferry o las actividades al aire libre.');
+  if (w.uv >= 10) a.push('Radiación UV muy alta.');
+  return a;
+}
+
+/* ---- archivos (adjuntos) ---- */
+const urlCache = {};
+async function fileURL(id) {
+  if (urlCache[id]) return urlCache[id];
+  const f = await DB.get('files', id); if (!f) return null;
+  urlCache[id] = URL.createObjectURL(f.blob); return urlCache[id];
+}
+async function putFile(file) {
+  if (!file || !file.size) return null;
+  if (file.size > 15 * 1024 * 1024) throw new Error('El archivo supera 15 MB.');
+  const id = uid('f'); await DB.put('files', id, {blob: file, name: file.name, type: file.type}); return id;
+}
+async function hydrate() {
+  for (const im of $$('img[data-fid]')) { const u = await fileURL(im.dataset.fid); if (u) im.src = u; }
+}
+
+'use strict';
+/* ====== VISTAS ====== */
+const ICON = {
+  home: '<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  cal: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',
+  map: '<path d="M9 4l-6 2v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  wallet: '<rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2"/>',
+  bag: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 13h18"/>',
+  sos: '<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.01"/>',
+  check: '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-6"/>',
+  doc: '<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/>'
+};
+const ic = (n) => '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[n] + '</svg>';
+const ROUTES = [['inicio', 'Inicio', 'home'], ['itinerario', 'Itinerario', 'cal'], ['mapa', 'Mapa', 'map'], ['gastos', 'Gastos', 'wallet'], ['mi-viaje', 'Mi viaje', 'bag']];
+const route = () => { const h = (location.hash || '#inicio').slice(1); return ROUTES.some(r => r[0] === h) ? h : 'inicio'; };
+const dcol = n => 'var(--d' + n + ')';
+
+function FF(k) {
+  return {
+    t: (l, n, v, type, ex, cls) => '<label class="f ' + (cls || '') + '"><span>' + l + '</span><input id="' + k + '_' + n + '" name="' + n + '" type="' + (type || 'text') + '" value="' + esc(v == null ? '' : v) + '" ' + (ex || '') + '></label>',
+    a: (l, n, v, cls) => '<label class="f ' + (cls || '') + '"><span>' + l + '</span><textarea id="' + k + '_' + n + '" name="' + n + '">' + esc(v || '') + '</textarea></label>',
+    s: (l, n, opts, v, cls) => '<label class="f ' + (cls || '') + '"><span>' + l + '</span><select id="' + k + '_' + n + '" name="' + n + '">' + opts.map(o => { const a = Array.isArray(o) ? o : [o, o]; return '<option value="' + esc(a[0]) + '"' + (String(a[0]) === String(v) ? ' selected' : '') + '>' + esc(a[1]) + '</option>'; }).join('') + '</select></label>',
+    f: (l, n, cls) => '<label class="f ' + (cls || '') + '"><span>' + l + '</span><input id="' + k + '_' + n + '" name="' + n + '" type="file"></label>'
+  };
+}
+const chip = (t, c) => '<span class="chip ' + (c || '') + '">' + esc(t) + '</span>';
+const NEEDS = {si: ['Requiere entrada o reserva', 'warn'], no: ['Sin entrada (verificar)', ''], verificar: [PEND, 'warn']};
+function toast(m) { const t = $('#toast'); if (!t) return; t.textContent = m; t.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(() => t.style.display = 'none', 3200); }
+
+/* ---- itinerario: cálculo de tramos y horarios estimados ---- */
+function schedule(list) {
+  let prev = null, dep = null; const out = [];
+  list.forEach(p => {
+    const c = C(p); let leg = null, arr = null;
+    if (prev && c) { const k = km(prev, c); leg = {k, w: walkMin(k), t: transitMin(k), c: carMin(k)}; }
+    const fixed = toMin(p.time);
+    if (fixed != null) arr = fixed; else if (dep != null) arr = dep + (leg ? (leg.k < 1.5 ? leg.w : leg.t) : 10);
+    dep = arr != null ? arr + (+p.mins || 0) : null;
+    if (c) prev = c;
+    out.push({p, leg, arr});
+  });
+  return out;
+}
+function optimizeOrder(list) {
+  const idx = []; list.forEach((p, i) => { if (C(p)) idx.push(i); });
+  if (idx.length < 3) return list.slice();
+  const items = idx.map(i => list[i]), res = [items[0]], rest = items.slice(1);
+  while (rest.length) {
+    const last = C(res[res.length - 1]); let bi = 0, bd = 1e9;
+    rest.forEach((p, i) => { const d = km(last, C(p)); if (d < bd) { bd = d; bi = i; } });
+    res.push(rest.splice(bi, 1)[0]);
+  }
+  const out = list.slice(); idx.forEach((i, j) => out[i] = res[j]); return out;
+}
+
+/* ---- alertas del panel ---- */
+function alerts() {
+  const a = [];
+  if (!S.travelers.length) a.push({l: 'warn', t: 'Agrega a los viajeros', x: 'Los viajeros se usan para dividir gastos y la lista migratoria.', go: 'admin'});
+  if (!S.flights.length) a.push({l: 'warn', t: 'Registra los vuelos', x: 'Falta el vuelo a Puerto Iguazú (10 dic) y el de regreso.', go: 'transporte'});
+  if (!S.uy.dest || !S.uy.company) a.push({l: 'warn', t: 'Configura la excursión a Uruguay', x: 'Destino, puerto, empresa y horarios están pendientes.', go: 'uruguay'});
+  a.push({l: 'warn', t: '8 de diciembre es feriado nacional en Argentina', x: 'Puede haber horarios especiales en transporte y comercios el día del ferry.'});
+  a.push({l: 'warn', t: '7 de diciembre: posible feriado puente', x: 'Verifica en fuentes oficiales; puede afectar horarios de museos y transporte.'});
+  const pend = S.bookings.filter(b => b.status === 'pendiente').length;
+  if (pend) a.push({l: 'warn', t: pend + ' reserva(s) pendiente(s)', x: 'Confírmalas antes del viaje.', go: 'reservas'});
+  const td = iso(today0());
+  S.bookings.forEach(b => { if (b.date && b.status !== 'cancelado') { const dd = daysTo(b.date); if (dd >= 0 && dd <= 3) a.push({l: 'bad', t: 'Reserva próxima: ' + b.name, x: fdate(b.date) + (b.time ? ' a las ' + b.time : ''), go: 'reservas'}); } });
+  if (S.weather) S.days.forEach(d => { ['ba', 'ig'].forEach(c => { const w = S.weather[c] && S.weather[c][d.date]; if (w && ((c === 'ba' && d.n !== 5) || (c === 'ig' && d.n === 5))) wAlerts(w).forEach(x => a.push({l: 'bad', t: 'Día ' + d.n + ' · ' + CITIES[c].n, x, go: 'clima'})); }); });
+  return a;
+}
+function progress() {
+  const steps = [
+    ['Viajeros agregados', S.travelers.length > 0], ['Vuelos registrados', S.flights.length > 0],
+    ['Ferry configurado', !!(S.uy.company && S.uy.dest)], ['Alojamiento reservado', S.bookings.some(b => b.cat === 'Alojamiento' && b.status === 'confirmado')],
+    ['Seguro de viaje', S.bookings.some(b => b.cat === 'Seguro de viaje' && b.status === 'confirmado')],
+    ['Presupuesto definido', Object.values(S.budgets).some(v => +v > 0)]
+  ];
+  let ct = 0, cd = 0; Object.values(S.checklist).forEach(g => g.forEach(i => { ct++; if (i.done) cd++; }));
+  const done = steps.filter(s => s[1]).length + cd, tot = steps.length + ct;
+  return {steps, pct: tot ? Math.round(done * 100 / tot) : 0, cd, ct};
+}
+function ringSVG(p) {
+  const r = 34, c = 2 * Math.PI * r;
+  return '<svg class="ring" viewBox="0 0 84 84" role="img" aria-label="Preparación ' + p + '%"><circle cx="42" cy="42" r="' + r + '" fill="none" stroke="var(--line)" stroke-width="9"/><circle cx="42" cy="42" r="' + r + '" fill="none" stroke="var(--terra)" stroke-width="9" stroke-linecap="round" stroke-dasharray="' + (c * p / 100).toFixed(1) + ' ' + c.toFixed(1) + '" transform="rotate(-90 42 42)"/><text x="42" y="47" text-anchor="middle" font-size="18" font-weight="700" fill="var(--fg)" style="font-family:var(--f-disp)">' + p + '%</text></svg>';
+}
+function skyline() {
+  let b = '', x = 0, seed = 7; const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  while (x < 800) { const w = 18 + Math.floor(rnd() * 34), h = 40 + Math.floor(rnd() * 90); b += '<rect x="' + x + '" y="' + (300 - h) + '" width="' + w + '" height="' + h + '"/>'; x += w + 2; }
+  return '<svg class="sky" viewBox="0 0 800 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B2545"/><stop offset=".7" stop-color="#17365F"/><stop offset="1" stop-color="#6E3524"/></linearGradient></defs><rect width="800" height="300" fill="url(#sg)"/><circle cx="640" cy="212" r="52" fill="#E4CD9A" opacity=".85"/><g fill="#071428">' + b + '<path d="M580 300 L586 96 L590 74 L594 96 L600 300Z"/></g></svg>';
+}
+function cdHTML() {
+  const t = S.trip, st = pd(t.start), en = pd(t.end); const now = new Date();
+  if (now < st) { const ms = st - now, d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4);
+    return '<div class="count" role="timer" aria-label="Cuenta regresiva"><div><b class="tnum">' + d + '</b><span>días</span></div><div><b class="tnum">' + h + '</b><span>horas</span></div><div><b class="tnum">' + m + '</b><span>min</span></div></div>'; }
+  if (now <= new Date(en.getFullYear(), en.getMonth(), en.getDate(), 23, 59)) { const n = Math.floor((today0() - st) / 864e5) + 1; return '<div class="count"><div><b>Día ' + n + '</b><span>de ' + S.days.length + '</span></div></div>'; }
+  return '<div class="count"><div><b>¡Gracias!</b><span>viaje completado</span></div></div>';
+}
+function nextActivity() {
+  const td = iso(today0());
+  for (const d of S.days.slice().sort((a, b) => a.date < b.date ? -1 : 1)) {
+    if (d.date >= td) { const it = dayPlaces(d).filter(p => !S.done[p.id]); if (it.length) return {d, p: it[0]}; }
+  }
+  return null;
+}
+function wBox(city) {
+  const w = S.weather && S.weather[city]; if (!w) return '<span class="muted small">' + CITIES[city].n + ': requiere conexión</span>';
+  const dt = S.days[city === 'ig' ? 4 : 0].date, x = w[dt] || w[Object.keys(w)[0]], lab = w[dt] ? fdate(dt) : 'hoy';
+  return '<div><b>' + CITIES[city].n + '</b> <span class="muted small">(' + lab + ')</span><br><span class="num">' + Math.round(x.tmin) + '° / ' + Math.round(x.tmax) + '°C</span> · lluvia ' + (x.pop == null ? '—' : x.pop + '%') + '</div>';
+}
+
+function vInicio() {
+  const na = nextActivity(), pr = progress(), al = alerts();
+  const spent = S.expenses.reduce((a, e) => a + (toCOP(+e.amount, e.cur) || 0), 0), bud = Object.values(S.budgets).reduce((a, v) => a + (+v || 0), 0);
+  let h = '<section class="hero">' + skyline() + '<div class="in"><span class="eyebrow" style="color:#E4CD9A">Buenos Aires · Uruguay · Cataratas del Iguazú</span><h1>ARGENTINA<br>EXPERIENCE 2026</h1><p class="sub">Nuestra aventura entre Buenos Aires, Uruguay y las Cataratas del Iguazú.</p><div class="dates"><span class="chip" style="background:rgba(228,205,154,.2);color:#F3E3BC">6 al 11 de diciembre de 2026</span><div id="cd">' + cdHTML() + '</div></div></div></section>';
+  h += '<section class="quick" aria-label="Accesos rápidos"><a href="#itinerario">' + ic('cal') + 'Itinerario</a><a href="#mapa">' + ic('map') + 'Mapas</a><a href="#gastos">' + ic('wallet') + 'Presupuesto</a><button data-act="tab" data-v="reservas">' + ic('doc') + 'Reservas y documentos</button><button data-act="tab" data-v="checklist">' + ic('check') + 'Pendientes</button><button class="sos" data-act="sos">' + ic('sos') + 'Emergencia</button></section>';
+  h += '<div class="grid"><section class="card"><div class="row between"><h3>Preparación del viaje</h3></div><div class="row" style="flex-wrap:nowrap">' + ringSVG(pr.pct) + '<ul style="margin:0;padding-left:18px;font-size:.88rem">' + pr.steps.map(s => '<li>' + (s[1] ? '<span class="chip ok">listo</span> ' : '<span class="chip warn">falta</span> ') + esc(s[0]) + '</li>').join('') + '</ul></div><p class="small muted">Lista de verificación: ' + pr.cd + ' de ' + pr.ct + ' marcados.</p></section>';
+  h += '<section class="card"><h3>Próxima actividad</h3>' + (na ? '<div class="row" style="flex-wrap:nowrap"><span class="dnum" style="background:' + dcol(na.d.n) + '">' + na.d.n + '</span><div><b>' + esc(na.p.name) + '</b><div class="small muted">Día ' + na.d.n + ' · ' + esc(na.d.dow) + (na.p.time ? ' · ' + esc(na.p.time) : '') + '</div></div></div><div class="row"><button class="btn sm" data-act="ficha" data-id="' + na.p.id + '">Ver ficha</button><a class="btn sm" target="_blank" rel="noopener" href="' + gplace(na.p) + '">Abrir en Google Maps</a></div>' : '<p class="muted">No quedan actividades pendientes.</p>') + '</section>';
+  h += '<section class="card"><div class="row between"><h3>Clima</h3><button class="btn sm" data-act="weather">Actualizar</button></div>' + wBox('ba') + wBox('ig') + '<p class="small muted">' + (S.weather ? 'Actualizado ' + new Date(S.weather.ts).toLocaleString('es-CO') : 'Requiere conexión para consultarse.') + '</p></section>';
+  h += '<section class="card"><h3>Presupuesto general</h3><div class="num" style="font-size:1.5rem;font-family:var(--f-disp)">' + money(spent) + '</div><div class="small muted">gastado de ' + (bud ? money(bud) : 'presupuesto sin definir') + '</div>' + (bud ? '<div class="bar ' + (spent > bud ? 'over' : '') + '"><i style="width:' + Math.min(100, Math.round(spent * 100 / bud)) + '%"></i></div>' : '') + '<a class="btn sm" href="#gastos">Abrir gastos</a></section></div>';
+  const top = al.slice(0, 6);
+  h += '<section class="stack"><h3>Alertas y recordatorios</h3>' + top.map(a => '<div class="alert ' + (a.l === 'bad' ? 'bad' : '') + '"><div><b>' + esc(a.t) + '</b>' + esc(a.x) + (a.go ? ' <button class="btn sm" data-act="tab" data-v="' + a.go + '">Abrir</button>' : '') + '</div></div>').join('') + '</section>';
+  h += '<section class="card"><h3>Los seis días</h3><div>' + S.days.map(d => '<a class="dayrow" href="#itinerario" data-act="setday" data-n="' + d.n + '"><span class="dnum" style="background:' + dcol(d.n) + '">' + d.n + '</span><div><b>' + esc(d.title) + '</b><div class="small muted">' + esc(d.dow) + ' · ' + dayPlaces(d).length + ' paradas</div></div></a>').join('') + '</div></section>';
+  return h;
+}
+
+function itemHTML(o, d, i, n) {
+  const p = o.p, c = C(p), done = S.done[p.id], nd = NEEDS[p.needs] || NEEDS.verificar;
+  let leg = '';
+  if (o.leg) leg = '<div class="leg"><span>' + o.leg.k.toFixed(1) + ' km desde el punto anterior (línea recta)</span><span>a pie ~' + fm(o.leg.w) + '</span><span>transporte ~' + fm(o.leg.t) + '</span><span>taxi ~' + fm(o.leg.c) + '</span></div>';
+  return '<div class="item ' + (done ? 'done' : '') + '"><span class="dnum" style="background:' + dcol(d.n) + '">' + (i + 1) + '</span><div class="stack"><div class="row between"><b class="nm">' + esc(p.name) + '</b><span class="small tnum muted">' + (o.arr != null ? '~' + hhmm(o.arr) : '') + '</span></div>' +
+    '<div class="row">' + chip(nd[0], nd[1]) + (p.mins ? chip('~' + fm(+p.mins)) : '') + (!c ? chip('Sin ubicación: ' + PEND, 'warn') : '') + '</div>' + (p.alert ? '<div class="alert"><div>' + esc(p.alert) + '</div></div>' : '') + leg +
+    '<div class="row"><button class="btn sm" data-act="ficha" data-id="' + p.id + '">Ficha</button><label class="row small" style="gap:6px"><input type="checkbox" data-chg="done" data-id="' + p.id + '" ' + (done ? 'checked' : '') + '> Visitado</label>' + (c ? '<a class="btn sm" target="_blank" rel="noopener" href="' + gplace(p) + '">Google Maps</a>' : '') + '</div></div></div>';
+}
+function vItin() {
+  const d = dayOf(ui.day) || S.days[0], list = dayPlaces(d), sch = schedule(list);
+  let h = '<div><span class="eyebrow">Itinerario</span><h2>Seis días, un recorrido</h2></div>';
+  h += '<div class="daychips" role="group" aria-label="Días">' + S.days.map(x => '<button data-act="setday" data-n="' + x.n + '" aria-pressed="' + (x.n === d.n) + '"><span class="small muted" style="color:inherit;opacity:.8">' + fdate(x.date) + '</span><b>Día ' + x.n + '</b></button>').join('') + '</div>';
+  h += '<section class="card"><div class="row"><span class="dnum" style="background:' + dcol(d.n) + '">' + d.n + '</span><div><h3>' + esc(d.title) + '</h3><div class="small muted">' + esc(d.dow) + '</div></div></div>' + (d.note ? '<p class="small muted">' + esc(d.note) + '</p>' : '') +
+    (d.n === 3 ? '<div class="alert"><div><b>Feriado nacional</b>El 8 de diciembre es feriado en Argentina. Verifica horarios especiales.</div></div>' : '') +
+    '<div class="row">' + (!d.fixed ? '<button class="btn sm" data-act="optimize" data-n="' + d.n + '">Optimizar orden</button>' : '') + (!d.fixed ? (S.prevOrder[d.n] ? '<button class="btn sm" data-act="restore" data-n="' + d.n + '">Restaurar orden</button>' : '<button class="btn sm" data-act="rain" data-n="' + d.n + '">Si llueve: bajo techo primero</button>') : '') + '<a class="btn sm" href="#mapa" data-act="mapday" data-v="' + d.n + '">Ver mapa del día</a></div>' +
+    '<div>' + sch.map((o, i) => itemHTML(o, d, i)).join('') + '</div></section>';
+  const pts = list.map(C).filter(Boolean);
+  if (pts.length > 1) h += '<section class="card"><h3>Abrir ruta del día en Google Maps</h3><p class="small muted">Distancia total en línea recta: ' + totalKm(list).toFixed(1) + ' km. Los tiempos son estimados.</p><div class="row">' + [['walking', 'Caminando'], ['transit', 'Transporte público'], ['driving', 'Auto o taxi']].map(m => '<a class="btn sm" target="_blank" rel="noopener" href="' + gdir(pts.slice(0, 10), m[0]) + '">' + m[1] + '</a>').join('') + '</div>' + (pts.length > 10 ? '<p class="small muted">Google Maps admite hasta 10 paradas por enlace: se envían las primeras 10.</p>' : '') + '</section>';
+  const alts = RAIN_ALTS[d.n] || [];
+  h += '<section class="card"><h3>Alternativas si hay lluvia o cierres</h3>' + (alts.length ? alts.map((a, i) => '<div class="row between"><div style="min-width:0"><b>' + esc(a.name) + '</b><div class="small muted">' + esc(a.note) + '</div></div><div class="row"><a class="btn sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=' + a.lat + ',' + a.lng + '">Mapa</a><button class="btn sm" data-act="addalt" data-n="' + d.n + '" data-i="' + i + '">Agregar al día</button></div></div>').join('') : '<p class="small muted">Sin alternativas cargadas para este día. En Iguazú, lleva poncho y confirma el estado de las pasarelas el mismo día.</p>') + '<p class="small muted">Son sugerencias: confirma horarios y tarifas antes de ir.</p></section>';
+  h += '<section class="card"><h3>Buscar destinos</h3><label class="f"><span>Escribe el nombre de un lugar</span><input id="q" type="search" data-input="search" value="' + esc(ui.q) + '" autocomplete="off"></label><div id="sr">' + searchHTML(ui.q) + '</div></section>';
+  return h;
+}
+function searchHTML(q) {
+  q = (q || '').trim().toLowerCase(); if (q.length < 2) return '<p class="small muted">Busca entre todos los lugares del viaje.</p>';
+  const r = Object.values(S.places).filter(p => (p.name + ' ' + p.addr).toLowerCase().includes(q));
+  return r.length ? r.map(p => '<div class="row between"><span>' + esc(p.name) + ' <span class="small muted">Día ' + p.day + '</span></span><button class="btn sm" data-act="ficha" data-id="' + p.id + '">Ficha</button></div>').join('') : '<p class="small muted">Sin resultados. Puedes agregar el lugar en Mi viaje > Administración.</p>';
+}
+
+function fichaHTML(id) {
+  const p = S.places[id]; if (!p) return '';
+  const d = dayOf(p.day), list = d ? dayPlaces(d) : [], sch = schedule(list), o = sch.find(x => x.p.id === id), c = C(p), nd = NEEDS[p.needs] || NEEDS.verificar;
+  const near = c ? Object.values(S.places).filter(q => q.id !== id && C(q) && km(c, C(q)) <= 1.2).sort((a, b) => km(c, C(a)) - km(c, C(b))).slice(0, 5) : [];
+  const url = p.url || (p.region === 'ig' ? 'https://www.argentina.gob.ar/parquesnacionales' : 'https://turismo.buenosaires.gob.ar');
+  let h = '<div class="row between"><div><span class="eyebrow">Día ' + p.day + (p.region === 'ig' ? ' · Misiones' : '') + '</span><h2>' + esc(p.name) + '</h2></div><button class="btn sm" data-act="close">Cerrar</button></div>';
+  h += '<div class="ph">' + (p.photoId ? '<img data-fid="' + p.photoId + '" alt="Foto de ' + esc(p.name) + '">' : '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="180" fill="var(--navy2)"/><circle cx="240" cy="62" r="26" fill="var(--gold)" opacity=".8"/><path d="M0 180 L0 128 L60 104 L110 130 L170 96 L230 126 L320 100 L320 180Z" fill="var(--navy)"/><text x="16" y="164" font-size="13" fill="#F2ECE0" style="font-family:var(--f-body)">Agrega tu foto de este lugar</text></svg>') + '</div>';
+  h += '<div class="row">' + chip(nd[0], nd[1]) + (S.done[id] ? chip('Visitado', 'ok') : '') + '</div>' + (p.alert ? '<div class="alert"><div><b>Alerta</b>' + esc(p.alert) + '</div></div>' : '');
+  h += '<dl class="kv"><dt>Descripción</dt><dd>' + esc(p.desc) + '</dd><dt>Qué ver y hacer</dt><dd>' + esc(p.see) + '</dd><dt>Dirección</dt><dd>' + esc(p.addr) + ' <span class="small muted">(verifica antes de ir)</span></dd><dt>Tiempo sugerido</dt><dd>' + (p.mins ? fm(+p.mins) : PEND) + '</dd><dt>Mejor momento</dt><dd>' + esc(p.best) + '</dd><dt>Entrada o reserva</dt><dd>' + nd[0] + '</dd><dt>Tarifa</dt><dd>' + (p.price ? '<span class="' + (p.price === PEND ? 'pending' : '') + '">' + esc(p.price) + '</span>' : '<span class="pending">' + PEND + '</span>') + '</dd><dt>Horario</dt><dd>' + (p.hours ? '<span class="' + (p.hours === PEND ? 'pending' : '') + '">' + esc(p.hours) + '</span>' : '<span class="pending">' + PEND + '</span>') + '</dd><dt>Consejos</dt><dd>' + esc(p.tips) + '</dd><dt>Restricciones</dt><dd>' + (p.restr ? esc(p.restr) : 'Sin restricciones registradas.') + '</dd>' +
+    (o && o.leg ? '<dt>Desde el punto anterior</dt><dd>' + o.leg.k.toFixed(1) + ' km · a pie ~' + fm(o.leg.w) + ' · taxi ~' + fm(o.leg.c) + '</dd>' : '') + (o && o.arr != null ? '<dt>Llegada estimada</dt><dd>~' + hhmm(o.arr) + '</dd>' : '') +
+    '<dt>Sitio oficial</dt><dd><a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(url.replace(/^https?:\/\//, '')) + '</a>' + (p.url ? '' : ' <span class="small muted">(sitio sugerido; agrega el oficial del lugar)</span>') + '</dd></dl>';
+  if (c) h += '<div class="row"><a class="btn pri sm" target="_blank" rel="noopener" href="' + gdir([{lat: c.lat, lng: c.lng}, c], 'walking').replace(/origin=[^&]+&/, '') + '">Cómo llegar (a pie)</a><a class="btn sm" target="_blank" rel="noopener" href="' + gdir([c, c], 'transit').replace(/origin=[^&]+&/, '') + '">Transporte</a><a class="btn sm" target="_blank" rel="noopener" href="' + gdir([c, c], 'driving').replace(/origin=[^&]+&/, '') + '">Auto o taxi</a></div>';
+  h += '<div class="row"><a class="btn sm" target="_blank" rel="noopener" href="' + gfood(p) + '">Restaurantes cerca</a><button class="btn sm" data-act="done" data-id="' + id + '">' + (S.done[id] ? 'Desmarcar visitado' : 'Marcar visitado') + '</button><button class="btn sm" data-act="edit" data-id="' + id + '">Editar</button></div>';
+  h += '<form data-form="photo" data-id="' + id + '" class="row">' + FF('ph').f('Foto de este lugar', 'file', 'full').replace('<label class="f full">', '<label class="f" style="flex:1">') + '<button class="btn sm" type="submit">Guardar foto</button></form>';
+  if (near.length) h += '<div><h3>Lugares cercanos del viaje</h3>' + near.map(q => '<div class="row between"><span>' + esc(q.name) + ' <span class="small muted">' + km(c, C(q)).toFixed(1) + ' km</span></span><button class="btn sm" data-act="ficha" data-id="' + q.id + '">Ficha</button></div>').join('') + '</div>';
+  return h;
+}
+function editHTML(id) {
+  const p = id === 'new' ? {id: 'new', day: ui.day, name: '', addr: '', desc: '', see: '', mins: 60, best: '', tips: '', time: '', hours: '', price: '', url: '', needs: 'verificar', alert: '', restr: '', outdoor: true, lat: '', lng: ''} : S.places[id];
+  const f = FF('pl');
+  return '<div class="row between"><h2>' + (id === 'new' ? 'Agregar actividad' : 'Editar lugar') + '</h2><button class="btn sm" data-act="close">Cerrar</button></div><form data-form="place" data-id="' + id + '" class="form">' +
+    f.t('Nombre', 'name', p.name, 'text', 'required', 'full') + f.s('Día', 'day', S.days.map(d => [d.n, 'Día ' + d.n + ' · ' + d.title]), p.day, 'full') +
+    f.t('Hora de llegada (HH:MM)', 'time', p.time, 'time') + f.t('Minutos de visita', 'mins', p.mins, 'number', 'min="0"') + f.t('Latitud', 'lat', p.lat == null ? '' : p.lat, 'text', 'inputmode="decimal"') + f.t('Longitud', 'lng', p.lng == null ? '' : p.lng, 'text', 'inputmode="decimal"') +
+    f.t('Dirección', 'addr', p.addr, 'text', '', 'full') + f.t('Horario oficial', 'hours', p.hours, 'text', 'placeholder="' + PEND + '"') + f.t('Tarifa', 'price', p.price, 'text', 'placeholder="' + PEND + '"') +
+    f.t('Sitio oficial (URL)', 'url', p.url, 'url', '', 'full') + f.s('Entrada o reserva', 'needs', [['si', 'Requiere entrada o reserva'], ['no', 'Sin entrada'], ['verificar', PEND]], p.needs) +
+    f.s('Tipo', 'outdoor', [['1', 'Al aire libre'], ['0', 'Bajo techo']], p.outdoor ? '1' : '0') + f.a('Descripción', 'desc', p.desc, 'full') + f.a('Qué ver y hacer', 'see', p.see, 'full') + f.a('Consejos', 'tips', p.tips, 'full') + f.a('Alerta (cierres, reserva, horarios especiales)', 'alert', p.alert, 'full') +
+    '<div class="row full"><button class="btn pri" type="submit">Guardar</button>' + (id !== 'new' ? '<button class="btn danger" type="button" data-act="delplace" data-id="' + id + '">Eliminar actividad</button>' : '') + '</div></form>';
+}
+
+/* ---- mapa ---- */
+function groupsFor(days) {
+  const res = {ba: [], ig: []};
+  days.forEach(d => {
+    const by = {ba: [], ig: []}; dayPlaces(d).forEach((p, i) => { if (C(p)) by[p.region === 'ig' ? 'ig' : 'ba'].push({p, n: i + 1}); });
+    ['ba', 'ig'].forEach(r => { if (by[r].length) res[r].push({color: dcol(d.n), pts: by[r], dash: d.n === 3, d}); });
+  });
+  return res;
+}
+function vMapa() {
+  const sel = ui.map === 'all' ? S.days : [dayOf(ui.map)].filter(Boolean), g = groupsFor(sel);
+  let h = '<div><span class="eyebrow">Mapa</span><h2>Recorrido del viaje</h2></div><div class="daychips"><button data-act="mapday" data-v="all" aria-pressed="' + (ui.map === 'all') + '"><b>General</b></button>' + S.days.map(d => '<button data-act="mapday" data-v="' + d.n + '" aria-pressed="' + (String(ui.map) === String(d.n)) + '"><b>Día ' + d.n + '</b></button>').join('') + '</div>';
+  h += '<div class="alert"><div><b>Mapa esquemático</b>Funciona sin conexión. Los mapas con calles y las rutas reales se abren en Google Maps (requiere conexión).</div></div>';
+  let regs = ['ba', 'ig'].filter(r => g[r].length);
+  if (ui.map !== 'all' && regs.length > 1) { regs = [g.ba.reduce((a, x) => a + x.pts.length, 0) >= g.ig.reduce((a, x) => a + x.pts.length, 0) ? 'ba' : 'ig']; }
+  if (!regs.length) h += mapSVG([], {});
+  regs.forEach(r => { h += '<section class="stack"><h3>' + (r === 'ig' ? 'Puerto Iguazú y Parque Nacional' : 'Buenos Aires' + (g.ig.length && ui.map === 'all' ? '' : '')) + '</h3>' + mapSVG(g[r], {}) + '</section>'; });
+  h += '<div class="legend">' + sel.map(d => '<span><i style="background:' + dcol(d.n) + '"></i>Día ' + d.n + ' ' + esc(d.title) + '</span>').join('') + '</div>';
+  h += '<div class="row"><button class="btn navy sm" data-act="gps">Mostrar mi ubicación</button>' + (ui.me ? '<span class="small muted">Ubicación obtenida.</span>' : '<span class="small muted">Requiere permiso de ubicación y conexión del dispositivo.</span>') + '</div>';
+  if (ui.mapSel && S.places[ui.mapSel]) { const p = S.places[ui.mapSel], c = C(p); h += '<section class="card"><h3>' + esc(p.name) + '</h3><p class="small muted">' + esc(p.addr) + '</p>' + (ui.me && c ? '<p class="small">A ' + km(ui.me, c).toFixed(1) + ' km de ti (línea recta).</p>' : '') + '<div class="row"><button class="btn sm" data-act="ficha" data-id="' + p.id + '">Ficha</button>' + (c ? ['walking', 'transit', 'driving'].map((m, i) => '<a class="btn sm" target="_blank" rel="noopener" href="' + gdir([c, c], m).replace(/origin=[^&]+&/, '') + '">' + ['A pie', 'Transporte', 'Taxi'][i] + '</a>').join('') : '') + '</div></section>'; }
+  h += '<section class="card"><h3>Distancias del recorrido</h3>' + sel.map(d => { const s = schedule(dayPlaces(d)); return '<div><b style="color:' + dcol(d.n) + '">Día ' + d.n + '</b> <span class="small muted">' + totalKm(dayPlaces(d)).toFixed(1) + ' km en línea recta</span><div class="tablewrap"><table><thead><tr><th>Lugar</th><th class="r">Desde anterior</th><th class="r">A pie</th><th class="r">Taxi</th></tr></thead><tbody>' + s.map(o => '<tr><td>' + esc(o.p.name) + '</td><td class="r num">' + (o.leg ? o.leg.k.toFixed(1) + ' km' : '—') + '</td><td class="r num">' + (o.leg ? fm(o.leg.w) : '—') + '</td><td class="r num">' + (o.leg ? fm(o.leg.c) : '—') + '</td></tr>').join('') + '</tbody></table></div></div>'; }).join('') + '<p class="small muted">Tiempos estimados con factor de calles de 1,3; no incluyen esperas ni tráfico.</p></section>';
+  return h;
+}
+
+/* ---- gastos ---- */
+function expStats() {
+  const tr = {}; S.travelers.forEach(t => tr[t.id] = {name: t.name, paid: 0, owed: 0});
+  const cat = {}, day = {}; let total = 0, nor = 0;
+  S.expenses.forEach(e => {
+    const v = toCOP(+e.amount, e.cur); if (v == null) { nor++; return; }
+    total += v; cat[e.cat] = (cat[e.cat] || 0) + v; day[e.date] = (day[e.date] || 0) + v;
+    if (tr[e.payer]) tr[e.payer].paid += v; const sp = (e.split || []).filter(x => tr[x]); sp.forEach(x => tr[x].owed += v / sp.length);
+  });
+  return {tr, cat, day, total, nor};
+}
+function settle(tr) {
+  const b = Object.values(tr).map(x => ({n: x.name, v: x.paid - x.owed})), out = [];
+  const pos = b.filter(x => x.v > 1).sort((a, c) => c.v - a.v), neg = b.filter(x => x.v < -1).sort((a, c) => a.v - c.v);
+  let i = 0, j = 0; while (i < neg.length && j < pos.length) { const m = Math.min(-neg[i].v, pos[j].v); out.push(neg[i].n + ' paga ' + money(m) + ' a ' + pos[j].n); neg[i].v += m; pos[j].v -= m; if (neg[i].v > -1) i++; if (pos[j].v < 1) j++; }
+  return out;
+}
+function vGastos() {
+  const st = expStats(), bud = Object.values(S.budgets).reduce((a, v) => a + (+v || 0), 0), f = FF('ex');
+  const days = Object.keys(st.day).sort(), maxD = Math.max(1, ...days.map(k => st.day[k]));
+  let h = '<div><span class="eyebrow">Gastos</span><h2>Presupuesto y control</h2></div>';
+  h += '<section class="grid"><div class="card"><span class="eyebrow">Gastado</span><div class="num" style="font-size:1.7rem;font-family:var(--f-disp)">' + money(st.total) + '</div></div><div class="card"><span class="eyebrow">Presupuesto</span><div class="num" style="font-size:1.7rem;font-family:var(--f-disp)">' + (bud ? money(bud) : '—') + '</div></div><div class="card"><span class="eyebrow">Disponible</span><div class="num" style="font-size:1.7rem;font-family:var(--f-disp);color:' + (bud && bud - st.total < 0 ? 'var(--bad)' : 'inherit') + '">' + (bud ? money(bud - st.total) : '—') + '</div></div></section>';
+  if (st.nor) h += '<div class="alert"><div><b>' + st.nor + ' gasto(s) sin tasa de cambio</b>No se suman al total hasta cargar tasas (requiere conexión).</div><button class="btn sm" data-act="rates">Cargar tasas</button></div>';
+  h += '<section class="card"><h3>Registrar gasto</h3>' + (S.travelers.length ? '<form data-form="expense" class="form">' + f.t('Descripción', 'desc', '', 'text', 'required', 'full') + f.t('Monto', 'amount', '', 'number', 'required min="0" step="any" inputmode="decimal"') + f.s('Moneda', 'cur', ['COP', 'ARS', 'USD', 'UYU'], 'COP') + f.s('Categoría', 'cat', CATS, 'Alimentación') + f.t('Fecha', 'date', iso(today0()), 'date', 'required') + f.s('Quién pagó', 'payer', S.travelers.map(t => [t.id, t.name]), S.travelers[0].id) + '<div class="full"><span class="small muted" style="font-weight:600">Dividir entre</span><div class="checks">' + S.travelers.map(t => '<label><input type="checkbox" name="split" value="' + t.id + '" checked> ' + esc(t.name) + '</label>').join('') + '</div></div><div class="full err" id="exerr"></div><button class="btn pri full" type="submit">Guardar gasto</button></form>' : '<p>Primero agrega a los viajeros.</p><button class="btn pri sm" data-act="tab" data-v="admin">Agregar viajeros</button>') + '</section>';
+  h += '<section class="card"><h3>Estimado contra gasto real</h3>' + CATS.map(c => { const b = +S.budgets[c] || 0, g = st.cat[c] || 0; return '<div class="stack" style="gap:4px"><div class="row between small"><span>' + esc(c) + '</span><span class="num">' + money(g) + ' / ' + (b ? money(b) : 'sin presupuesto') + '</span></div><div class="bar ' + (b && g > b ? 'over' : '') + '"><i style="width:' + (b ? Math.min(100, g * 100 / b) : (g ? 100 : 0)) + '%"></i></div></div>'; }).join('') + '<p class="small muted">Los presupuestos por categoría se definen en Mi viaje > Administración.</p></section>';
+  if (days.length) { const W = 600, H = 170, bw = Math.min(60, (W - 40) / days.length - 8); h += '<section class="card"><h3>Gasto por día</h3><div class="tablewrap"><svg viewBox="0 0 ' + W + ' ' + H + '" style="min-width:' + Math.min(600, 60 * days.length + 60) + 'px;width:100%" role="img" aria-label="Gasto por día"><line x1="20" y1="130" x2="' + (W - 10) + '" y2="130" stroke="var(--line)"/>' + days.map((k, i) => { const bh = st.day[k] / maxD * 100, x = 30 + i * (bw + 8); return '<rect x="' + x + '" y="' + (130 - bh) + '" width="' + bw + '" height="' + bh + '" rx="4" fill="var(--terra)"/><text x="' + (x + bw / 2) + '" y="' + (124 - bh) + '" text-anchor="middle" font-size="10" fill="var(--fg)">' + money(st.day[k]).replace(/\s/g, ' ') + '</text><text x="' + (x + bw / 2) + '" y="148" text-anchor="middle" font-size="10" fill="var(--muted)">' + k.slice(5) + '</text>'; }).join('') + '</svg></div></section>'; }
+  h += '<section class="card"><h3>Quién debe a quién</h3>' + (Object.keys(st.tr).length ? '<div class="tablewrap"><table><thead><tr><th>Viajero</th><th class="r">Pagó</th><th class="r">Le corresponde</th><th class="r">Saldo</th></tr></thead><tbody>' + Object.values(st.tr).map(x => '<tr><td>' + esc(x.name) + '</td><td class="r num">' + money(x.paid) + '</td><td class="r num">' + money(x.owed) + '</td><td class="r num" style="color:' + (x.paid - x.owed < -1 ? 'var(--bad)' : 'var(--ok)') + '">' + money(x.paid - x.owed) + '</td></tr>').join('') + '</tbody></table></div>' + (settle(st.tr).length ? '<ul>' + settle(st.tr).map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>' : '<p class="small muted">Todo está saldado.</p>') : '<p class="small muted">Agrega viajeros para dividir gastos.</p>') + '</section>';
+  h += '<section class="card"><h3>Convertidor de monedas</h3><form data-form="conv" class="form">' + f.t('Monto', 'a', '100000', 'number', 'min="0" step="any"') + f.s('De', 'from', ['COP', 'ARS', 'USD', 'UYU'], 'COP') + f.s('A', 'to', ['COP', 'ARS', 'USD', 'UYU'], 'USD') + '<button class="btn sm" type="submit" style="align-self:end">Convertir</button></form><div id="convout" class="num"></div><div class="row"><button class="btn sm" data-act="rates">Actualizar tasa</button><span class="small muted">' + (S.rates ? 'Tasa del ' + new Date(S.rates.ts).toLocaleString('es-CO') : 'Sin tasa cargada: requiere conexión.') + '</span></div></section>';
+  h += '<section class="card"><h3>Movimientos</h3>' + (S.expenses.length ? '<div class="tablewrap"><table><thead><tr><th>Fecha</th><th>Detalle</th><th>Pagó</th><th class="r">Monto</th><th></th></tr></thead><tbody>' + S.expenses.slice().sort((a, b) => a.date < b.date ? 1 : -1).map(e => { const t = S.travelers.find(x => x.id === e.payer); return '<tr><td class="num">' + e.date.slice(5) + '</td><td>' + esc(e.desc) + '<div class="small muted">' + esc(e.cat) + '</div></td><td>' + esc(t ? t.name : '—') + '</td><td class="r num">' + money(+e.amount, e.cur) + '</td><td><button class="btn sm danger" data-act="delexp" data-id="' + e.id + '" aria-label="Eliminar gasto">Quitar</button></td></tr>'; }).join('') + '</tbody></table></div>' : '<p class="small muted">Aún no hay gastos registrados. Funciona sin conexión: se guardan en este dispositivo.</p>') + '</section>';
+  return h;
+}
+
+/* ---- Mi viaje ---- */
+const TABS = [['reservas', 'Reservas y documentos'], ['transporte', 'Transporte'], ['uruguay', 'Uruguay'], ['iguazu', 'Iguazú'], ['clima', 'Clima'], ['checklist', 'Checklist'], ['info', 'Información'], ['diario', 'Diario'], ['admin', 'Administración'], ['ajustes', 'Ajustes']];
+function vViaje() {
+  const fn = {reservas: tReservas, transporte: tTransporte, uruguay: tUruguay, iguazu: tIguazu, clima: tClima, checklist: tChecklist, info: tInfo, diario: tDiario, admin: tAdmin, ajustes: tAjustes}[ui.tab] || tReservas;
+  return '<div><span class="eyebrow">Mi viaje</span><h2>Todo en un solo lugar</h2></div><div class="tabs" role="group" aria-label="Secciones">' + TABS.map(t => '<button data-act="tab" data-v="' + t[0] + '" aria-pressed="' + (ui.tab === t[0]) + '">' + t[1] + '</button>').join('') + '</div>' + fn();
+}
+function tReservas() {
+  const f = FF('bk'), g = FF('dc'), h2 = FF('ct');
+  let h = '<section class="card"><h3>Nueva reserva</h3><form data-form="booking" class="form">' + f.t('Servicio', 'name', '', 'text', 'required', 'full') + f.s('Tipo', 'cat', BOOK_CATS, 'Alojamiento') + f.s('Estado', 'status', [['pendiente', 'Pendiente'], ['confirmado', 'Confirmado'], ['cancelado', 'Cancelado']], 'pendiente') + f.t('Fecha', 'date', '', 'date') + f.t('Hora', 'time', '', 'time') + f.t('Código de reserva', 'code') + f.t('Dirección', 'addr', '', 'text', '', 'full') + f.f('Archivo adjunto (máx. 15 MB)', 'file', 'full') + '<div class="err full" id="bkerr"></div><button class="btn pri full" type="submit">Guardar reserva</button></form></section>';
+  h += '<section class="card"><h3>Reservas</h3>' + (S.bookings.length ? S.bookings.map(b => '<div class="item" style="grid-template-columns:1fr"><div class="stack"><div class="row between"><b>' + esc(b.name) + '</b>' + chip(b.status === 'confirmado' ? 'Confirmado' : b.status === 'cancelado' ? 'Cancelado' : 'Pendiente', b.status === 'confirmado' ? 'ok' : b.status === 'cancelado' ? 'bad' : 'warn') + '</div><div class="small muted">' + esc(b.cat) + (b.date ? ' · ' + fdate(b.date) : '') + (b.time ? ' · ' + esc(b.time) : '') + (b.code ? ' · Código ' + esc(b.code) : '') + '</div>' + (b.addr ? '<div class="small">' + esc(b.addr) + '</div>' : '') + '<div class="row">' + (b.fileId ? '<button class="btn sm" data-act="openfile" data-fid="' + b.fileId + '">Abrir adjunto</button>' : '') + '<select data-chg="bkstatus" data-id="' + b.id + '" aria-label="Estado" style="width:auto"><option value="pendiente"' + (b.status === 'pendiente' ? ' selected' : '') + '>Pendiente</option><option value="confirmado"' + (b.status === 'confirmado' ? ' selected' : '') + '>Confirmado</option><option value="cancelado"' + (b.status === 'cancelado' ? ' selected' : '') + '>Cancelado</option></select><button class="btn sm danger" data-act="delbook" data-id="' + b.id + '">Eliminar</button></div></div></div>').join('') : '<p class="small muted">Aún no hay reservas. Agrega tu alojamiento, seguro, ferry y entradas.</p>') + '</section>';
+  h += '<section class="card"><h3>Carpeta de documentos</h3><p class="small muted">Los archivos se guardan solo en este dispositivo (no se suben a ningún servidor). Activa el PIN en Ajustes para limitar el acceso.</p><form data-form="doc" class="form">' + g.s('Tipo', 'type', DOC_TYPES, 'Pasaporte') + g.t('Nombre o titular', 'name', '', 'text', 'required') + g.f('Archivo (máx. 15 MB)', 'file', 'full') + '<div class="err full" id="dcerr"></div><button class="btn pri full" type="submit">Guardar documento</button></form>' +
+    (S.docs.length ? S.docs.map(d => '<div class="row between"><div style="min-width:0"><b>' + esc(d.name) + '</b><div class="small muted">' + esc(d.type) + '</div></div><div class="row">' + (d.fileId ? '<button class="btn sm" data-act="openfile" data-fid="' + d.fileId + '">Abrir</button>' : '') + '<button class="btn sm danger" data-act="deldoc" data-id="' + d.id + '">Eliminar</button></div></div>').join('') : '<p class="small muted">Sin documentos guardados.</p>') + '</section>';
+  h += '<section class="card"><h3>Teléfonos importantes</h3><form data-form="contact" class="form">' + h2.t('Nombre', 'name', '', 'text', 'required') + h2.t('Teléfono', 'phone', '', 'tel', 'required') + '<button class="btn sm" type="submit" style="align-self:end">Agregar</button></form>' + (S.contacts.length ? S.contacts.map(c => '<div class="row between"><span><b>' + esc(c.name) + '</b> <span class="num">' + esc(c.phone) + '</span></span><button class="btn sm danger" data-act="delcontact" data-id="' + c.id + '">Quitar</button></div>').join('') : '<p class="small muted">Agrega alojamiento, seguro, familiares y contactos de emergencia.</p>') + '</section>';
+  return h;
+}
+function tTransporte() {
+  const f = FF('fl');
+  let h = '<section class="card"><h3>Registrar vuelo</h3><form data-form="flight" class="form">' + f.s('Tipo', 'type', ['Vuelo internacional', 'Vuelo nacional (a Iguazú)', 'Vuelo nacional (regreso)', 'Otro']) + f.t('Aerolínea / vuelo', 'no') + f.t('Origen', 'from') + f.t('Destino', 'to') + f.t('Fecha', 'date', '', 'date') + f.t('Hora', 'time', '', 'time') + f.t('Aeropuerto y terminal', 'term') + f.t('Código de reserva', 'code') + f.t('Equipaje', 'bags', '', 'text', 'placeholder="p. ej. 1 maleta de 23 kg"', 'full') + '<div class="err full" id="flerr"></div><button class="btn pri full" type="submit">Guardar vuelo</button></form></section>';
+  h += '<section class="card"><h3>Vuelos registrados</h3>' + (S.flights.length ? S.flights.map(x => '<div class="item" style="grid-template-columns:1fr"><div class="stack"><div class="row between"><b>' + esc(x.from) + ' → ' + esc(x.to) + '</b>' + chip(x.type) + '</div><div class="small muted">' + (x.date ? fdate(x.date) : PEND) + (x.time ? ' · ' + esc(x.time) : '') + (x.no ? ' · ' + esc(x.no) : '') + '</div><div class="small">' + (x.term ? 'Terminal: ' + esc(x.term) + ' · ' : '') + (x.code ? 'Reserva: ' + esc(x.code) + ' · ' : '') + (x.bags ? 'Equipaje: ' + esc(x.bags) : '') + '</div><div><button class="btn sm danger" data-act="delfl" data-id="' + x.id + '">Eliminar</button></div></div></div>').join('') : '<p class="small muted">Sin vuelos. El vuelo a Puerto Iguazú del 10 de diciembre queda pendiente de registrar.</p>') + '</section>';
+  const rows = [
+    ['Aeropuertos de Buenos Aires', 'Aeroparque Jorge Newbery (AEP) recibe la mayoría de vuelos nacionales; Ezeiza (EZE) los internacionales. Confirma en tu tiquete cuál usarás. Traslado: taxi, remís, transporte de aeropuerto o colectivos; tiempos y tarifas ' + PEND.toLowerCase() + '.'],
+    ['Subte', 'Red de líneas A a H bajo el centro. Se paga con tarjeta SUBE. Tarifa ' + PEND.toLowerCase() + '; consulta el sitio oficial.'],
+    ['Colectivos', 'Cobran con SUBE (no aceptan efectivo en general). Indica el destino al subir y revisa las apps de mapas para la línea.'],
+    ['Trenes', 'Red de trenes metropolitanos con SUBE. Útil para salir del centro; no necesario para este itinerario.'],
+    ['Taxis y aplicaciones', 'Los taxis oficiales usan taxímetro. Verifica que esté en marcha y evita tomar autos no identificados. Las apps de transporte pueden operar con restricciones: verifica su disponibilidad.'],
+    ['Traslado al puerto y ferry', 'Define la terminal en Mi viaje > Uruguay. Llega con el margen que indique tu tiquete.'],
+    ['Aeropuerto de Iguazú al parque', 'El Aeropuerto Internacional Cataratas del Iguazú (IGR) está en la provincia de Misiones. Hay traslados en remís, taxi y servicios de transfer; precios y horarios ' + PEND.toLowerCase() + '.']
+  ];
+  h += '<section class="card"><h3>Movilidad en Buenos Aires</h3>' + rows.map(r => '<div><b>' + esc(r[0]) + '</b><div class="small">' + esc(r[1]) + '</div></div>').join('') + '</section>';
+  h += '<section class="card"><h3>Tarjeta SUBE</h3><dl class="kv"><dt>Cómo conseguirla</dt><dd>Se vende en puntos autorizados y kioscos. Verifica el procedimiento vigente para turistas en el sitio oficial.</dd><dt>Dónde recargarla</dt><dd>Puntos de recarga autorizados, terminales y canales digitales oficiales.</dd><dt>Cómo usarla</dt><dd>Acércala al lector al subir a un colectivo o pasar el molinete del subte o tren.</dd><dt>Medios de pago</dt><dd>' + PEND + ' (varían según el punto de recarga).</dd><dt>Tarifas vigentes</dt><dd class="pending">' + PEND + '</dd><dt>Sitio oficial</dt><dd><a href="https://www.argentina.gob.ar/sube" target="_blank" rel="noopener">argentina.gob.ar/sube</a></dd></dl></section>';
+  return h;
+}
+function tUruguay() {
+  const u = S.uy, f = FF('uy'), p3 = (dayOf(3) ? dayPlaces(dayOf(3)) : []);
+  const grp = [{color: dcol(3), dash: true, pts: p3.map((p, i) => ({p, n: i + 1})).filter(o => C(o.p))}];
+  let h = '<div class="alert"><div><b>Excursión del 8 de diciembre (feriado nacional en Argentina)</b>Todo lo que ves aquí lo configuras tú. No hay reservas ni horarios inventados.</div></div>';
+  h += '<section class="card"><h3>Datos del ferry</h3><form data-form="uy" class="form">' + f.s('Puerto de salida (Buenos Aires)', 'port', [['', 'Seleccionar…']].concat(URY_PORTS.map(x => [x.k, x.n])), u.portK, 'full') + f.s('Ciudad de destino', 'dest', [['', 'Seleccionar…']].concat(URY_DESTS.map(x => [x.k, x.n])), u.destK, 'full') + f.t('Puerto de llegada', 'arrive', u.arrive || '', 'text', 'placeholder="' + PEND + '"') + f.t('Empresa de ferry', 'company', u.company, 'text', 'placeholder="' + PEND + '"') + f.t('Horario de ida', 'out', u.out, 'time') + f.t('Horario de regreso', 'back', u.back, 'time') + f.t('Número de reserva', 'res', u.res) + f.a('Información migratoria y notas', 'notes', u.notes, 'full') + '<button class="btn pri full" type="submit">Guardar datos de Uruguay</button></form><p class="small muted">Las ubicaciones de terminales son aproximadas. Confirma la terminal exacta en tu tiquete.</p></section>';
+  h += '<section class="stack"><h3>Mapa del recorrido</h3>' + mapSVG(grp, {}) + '</section>';
+  h += '<section class="card"><h3>Lugares turísticos en Uruguay</h3><form data-form="uysight" class="form">' + f.t('Lugar', 'name', '', 'text', 'required') + f.t('Horario', 'time', '', 'time') + f.t('Costo (UYU)', 'cost', '', 'number', 'min="0" step="any"') + '<button class="btn sm" style="align-self:end" type="submit">Agregar</button></form>' + (u.sights.length ? u.sights.map((s, i) => '<div class="row between"><span><b>' + esc(s.name) + '</b> <span class="small muted">' + (s.time ? esc(s.time) : 'sin hora') + (s.cost ? ' · ' + money(+s.cost, 'UYU') : '') + '</span></span><button class="btn sm danger" data-act="deluy" data-i="' + i + '">Quitar</button></div>').join('') : '<p class="small muted">Sin lugares registrados.</p>') + '</section>';
+  const uyG = S.expenses.filter(e => e.cur === 'UYU' || e.date === '2026-12-08');
+  h += '<section class="card"><h3>Gastos en pesos uruguayos</h3>' + (uyG.length ? uyG.map(e => '<div class="row between"><span>' + esc(e.desc) + '</span><span class="num">' + money(+e.amount, e.cur) + '</span></div>').join('') : '<p class="small muted">Registra gastos en UYU desde la pestaña Gastos.</p>') + '</section>';
+  h += '<section class="card"><h3>Requisitos migratorios por viajero</h3><p class="small muted">Los requisitos dependen de la nacionalidad y cambian. Verifícalos en fuentes oficiales: <a href="https://www.argentina.gob.ar/interior/migraciones" target="_blank" rel="noopener">Migraciones Argentina</a> · <a href="https://www.gub.uy/ministerio-relaciones-exteriores" target="_blank" rel="noopener">Cancillería de Uruguay</a>. Esta lista no asume ningún requisito.</p>' +
+    (S.travelers.length ? S.travelers.map(t => '<div class="stack"><b>' + esc(t.name) + ' <span class="small muted">' + esc(t.nat || 'nacionalidad por definir') + '</span></b>' + MIG_ITEMS.map(m => '<label class="row small" style="flex-wrap:nowrap"><input type="checkbox" data-chg="mig" data-t="' + t.id + '" data-k="' + m[0] + '" ' + ((S.mig[t.id] || {})[m[0]] ? 'checked' : '') + '><span>' + esc(m[1]) + '</span></label>').join('') + '</div>').join('') : '<p class="small muted">Agrega viajeros en Administración.</p>') + '</section>';
+  return h;
+}
+const CIRC = [['p504', '≈ 1,1 km de pasarela (más tren)'], ['p505', '≈ 1,7 km'], ['p506', '≈ 1,4 km']];
+function tIguazu() {
+  const g = groupsFor([dayOf(5)]).ig, ST = ['Pendiente de confirmar', 'Disponible', 'Cierre temporal'];
+  let h = '<div class="alert"><div><b>Jueves 10 de diciembre</b>El estado de los senderos cambia por crecidas y clima. Confirma el mismo día en la fuente oficial.</div></div>';
+  h += '<section class="card"><h3>Parque Nacional Iguazú</h3><p>Área protegida en la provincia de Misiones, Patrimonio Natural de la Humanidad (UNESCO), con selva paranaense y un conjunto de cataratas sobre el río Iguazú.</p><div class="row"><a class="btn sm" target="_blank" rel="noopener" href="https://www.argentina.gob.ar/parquesnacionales">Parques Nacionales</a><a class="btn sm" target="_blank" rel="noopener" href="https://iguazuargentina.com">Compra de entradas (confirma que sea el canal oficial)</a></div><dl class="kv"><dt>Horarios de ingreso</dt><dd class="pending">' + PEND + '</dd><dt>Tarifas</dt><dd class="pending">' + PEND + '</dd><dt>Entradas</dt><dd>Compra con anticipación y guarda el comprobante en Reservas.</dd></dl></section>';
+  h += '<section class="card"><h3>Circuitos y estado</h3><div class="tablewrap"><table><thead><tr><th>Circuito</th><th>Distancia aprox.</th><th>Estado</th></tr></thead><tbody>' + CIRC.map(c => { const p = S.places[c[0]], st = S.igStatus[c[0]] || ST[0]; return '<tr><td><b>' + esc(p ? p.name : c[0]) + '</b></td><td>' + c[1] + '<div class="small muted">Verificar en sitio oficial</div></td><td><select data-chg="igst" data-id="' + c[0] + '" aria-label="Estado de ' + esc(p ? p.name : '') + '" style="width:auto">' + ST.map(s => '<option' + (s === st ? ' selected' : '') + '>' + s + '</option>').join('') + '</select></td></tr>'; }).join('') + '</tbody></table></div><p class="small muted">Las distancias son orientativas. Un circuito puede estar cerrado temporalmente: la Garganta del Diablo, por ejemplo, depende del caudal del río.</p></section>';
+  h += '<section class="stack"><h3>Mapa de senderos (esquemático)</h3>' + mapSVG(g, {}) + '</section>';
+  h += '<section class="grid"><div class="card"><h3>Transporte</h3><p class="small">Aeropuerto de Iguazú al parque: transfer, remís o taxi. Precios y horarios ' + PEND.toLowerCase() + '. Dentro del parque, el tren ecológico lleva hacia la Garganta del Diablo.</p></div><div class="card"><h3>Qué llevar</h3><ul class="small" style="margin:0;padding-left:18px"><li>Ropa ligera y de secado rápido.</li><li>Poncho o impermeable.</li><li>Calzado cerrado antiderrapante.</li><li>Repelente y protector solar.</li><li>Funda estanca para celular y cámara.</li><li>Botella de agua reutilizable.</li></ul></div><div class="card"><h3>Hidratación y clima</h3><p class="small">Es zona cálida y húmeda en diciembre. Bebe agua con frecuencia y toma pausas a la sombra. Consulta la pestaña Clima.</p></div><div class="card"><h3>Fauna y naturaleza</h3><p class="small">Es común ver coatíes, mariposas y aves. No alimentes a los animales ni te acerques: pueden ser agresivos.</p></div><div class="card"><h3>Accesibilidad</h3><p class="small">Las pasarelas tienen tramos con escalones y otros accesibles. El estado de cada sendero es ' + PEND.toLowerCase() + ': confirma con el parque.</p></div></section>';
+  return h;
+}
+function tClima() {
+  const w = S.weather; let h = '<section class="card"><div class="row between"><h3>Pronóstico del viaje</h3><button class="btn sm pri" data-act="weather">Actualizar (requiere conexión)</button></div><p class="small muted">' + (w ? 'Última actualización: ' + new Date(w.ts).toLocaleString('es-CO') + '. Fuente: Open-Meteo.' : 'Aún no hay datos. Requiere conexión.') + '</p><p class="small muted">Los pronósticos suelen cubrir ~16 días: los últimos días del viaje pueden aparecer cuando se acerque la fecha.</p></section>';
+  S.days.forEach(d => {
+    const c = d.n === 5 ? 'ig' : 'ba', x = w && w[c] && w[c][d.date];
+    h += '<section class="card"><div class="row"><span class="dnum" style="background:' + dcol(d.n) + '">' + d.n + '</span><div><b>' + fdate(d.date) + ' · ' + CITIES[c].n + '</b></div></div>' + (x ? '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr))"><div><span class="eyebrow">Temp.</span><div class="num">' + Math.round(x.tmin) + '° / ' + Math.round(x.tmax) + '°C</div></div><div><span class="eyebrow">Sensación</span><div class="num">' + Math.round(x.feel) + '°C</div></div><div><span class="eyebrow">Lluvia</span><div class="num">' + x.pop + '%</div></div><div><span class="eyebrow">Humedad</span><div class="num">' + (x.hum == null ? '—' : x.hum + '%') + '</div></div><div><span class="eyebrow">Viento</span><div class="num">' + Math.round(x.wind) + ' km/h</div></div><div><span class="eyebrow">UV</span><div class="num">' + Math.round(x.uv) + '</div></div></div>' + wAlerts(x).map(a => '<div class="alert bad"><div>' + esc(a) + '</div></div>').join('') + '<div><b class="small">Qué ponerte</b><ul class="small" style="margin:4px 0 0;padding-left:18px">' + clothing(x, c).map(t => '<li>' + esc(t) + '</li>').join('') + '</ul></div>' : '<p class="small muted">Pronóstico aún no disponible para esta fecha (o sin conexión). Referencia general: diciembre suele ser cálido y húmedo, con tormentas posibles.</p>') + '</section>';
+  });
+  return h;
+}
+function tChecklist() {
+  const f = FF('ck'), pr = progress();
+  let h = '<section class="card"><div class="row between"><h3>Avance</h3><span class="num">' + pr.cd + ' / ' + pr.ct + '</span></div><div class="bar"><i style="width:' + (pr.ct ? pr.cd * 100 / pr.ct : 0) + '%"></i></div></section>';
+  Object.keys(S.checklist).forEach(g => { h += '<section class="card"><h3>' + esc(g) + '</h3>' + S.checklist[g].map(i => '<div class="row between"><label class="row" style="flex-wrap:nowrap;flex:1;min-width:0"><input type="checkbox" data-chg="chk" data-g="' + esc(g) + '" data-id="' + i.id + '" ' + (i.done ? 'checked' : '') + '><span style="' + (i.done ? 'text-decoration:line-through;color:var(--muted)' : '') + '">' + esc(i.text) + '</span></label><button class="btn sm danger" data-act="delchk" data-g="' + esc(g) + '" data-id="' + i.id + '" aria-label="Quitar ' + esc(i.text) + '">Quitar</button></div>').join('') + '</section>'; });
+  h += '<section class="card"><h3>Agregar pendiente</h3><form data-form="chk" class="form">' + f.s('Lista', 'g', Object.keys(S.checklist)) + f.t('Pendiente', 'text', '', 'text', 'required') + '<button class="btn sm" style="align-self:end" type="submit">Agregar</button></form></section>';
+  return h;
+}
+function tInfo() {
+  const blocks = [
+    ['Emergencias en Argentina', [['Emergencias / Policía', '911'], ['Ambulancia (SAME, Buenos Aires)', '107'], ['Bomberos', '100'], ['Policía Turística de Buenos Aires', '0800-999-5000 (verifica)']]],
+  ];
+  let h = '<section class="card"><h3>Números de emergencia</h3>' + blocks[0][1].map(r => '<div class="row between"><span>' + r[0] + '</span><b class="num">' + r[1] + '</b></div>').join('') + '<p class="small muted">Confirma los números antes del viaje. Agrega hospitales y el consulado de tu país en Reservas > Teléfonos importantes (datos ' + PEND.toLowerCase() + ').</p></section>';
+  const cards = [
+    ['Seguridad turística', 'Mantén el celular y la billetera en bolsillos delanteros o bolso cerrado. Evita usar el teléfono en el borde de la acera. En zonas muy concurridas (Plaza de Mayo, Caminito, Florida) cuida tus pertenencias. Usa taxis oficiales y llama desde la puerta de tu alojamiento.'],
+    ['Cajeros y cambio de dinero', 'Usa cajeros dentro de bancos y a plena luz. Compara la tasa de tu tarjeta con casas de cambio autorizadas. Evita cambiar dinero en la calle.'],
+    ['Atención médica', 'Contrata un seguro de viaje con cobertura médica y guarda su póliza en Reservas. En emergencias, llama al 107 (SAME) o ve a un hospital.'],
+    ['Diferencia horaria', 'Argentina está en UTC-3 todo el año. Frente a Colombia (UTC-5) son 2 horas más.'],
+    ['Electricidad y enchufes', 'Argentina usa 220 V y 50 Hz con enchufes tipo C e I. Lleva adaptador si tus equipos usan otro tipo.'],
+    ['Internet y SIM', 'Evalúa roaming internacional o una eSIM. Descarga mapas sin conexión antes de salir. Tarifas y planes: ' + PEND.toLowerCase() + '.'],
+    ['Medios de pago', 'Tarjetas de crédito se aceptan en muchos lugares; lleva algo de efectivo para propinas y compras pequeñas. Informa a tu banco del viaje.'],
+    ['Propinas', 'Es costumbre dejar propina en restaurantes (en torno al 10 %). Revisa si el servicio ya la incluye.'],
+    ['Costumbres locales', 'Los horarios de cena son tardíos (después de las 20:30). El saludo común es un beso en la mejilla. El mate se comparte entre amigos.'],
+    ['Expresiones frecuentes', 'Che (oye), colectivo (bus), subte (metro), mozo (mesero), la cuenta, por favor, lo de siempre.']
+  ];
+  h += '<div class="grid">' + cards.map(c => '<div class="card"><h3>' + esc(c[0]) + '</h3><p class="small">' + esc(c[1]) + '</p></div>').join('') + '</div>';
+  h += '<section class="card"><h3>Buscar restaurantes</h3><p class="small muted">Abre Google Maps con una búsqueda cerca de uno de tus lugares.</p><div class="row">' + S.days.filter(d => d.n !== 3).map(d => { const p = dayPlaces(d).find(x => C(x)); return p ? '<a class="btn sm" target="_blank" rel="noopener" href="' + gfood(p) + '">Día ' + d.n + '</a>' : ''; }).join('') + '</div></section>';
+  return h;
+}
+function tDiario() {
+  const f = FF('dr');
+  let h = '<section class="card"><h3>Nueva entrada</h3><form data-form="diary" class="form">' + f.t('Fecha', 'date', iso(today0()), 'date', 'required') + f.f('Foto (opcional)', 'file') + f.a('¿Qué pasó hoy?', 'text', '', 'full') + '<div class="err full" id="drerr"></div><button class="btn pri full" type="submit">Guardar en el diario</button></form></section>';
+  h += S.diary.length ? S.diary.slice().sort((a, b) => a.date < b.date ? 1 : -1).map(e => '<section class="card"><div class="row between"><b>' + fdate(e.date) + '</b><button class="btn sm danger" data-act="deldiary" data-id="' + e.id + '">Eliminar</button></div>' + (e.photoId ? '<div class="ph"><img data-fid="' + e.photoId + '" alt="Foto del diario"></div>' : '') + '<p style="white-space:pre-wrap">' + esc(e.text) + '</p></section>').join('') : '<p class="muted">Todavía no hay recuerdos. Guarda fotos y notas durante el viaje.</p>';
+  return h;
+}
+function tAdmin() {
+  const f = FF('tv'), b = FF('bd'), t = FF('tp');
+  let h = '<div class="alert ok"><div><b>Panel privado</b>Los cambios se reflejan de inmediato en el itinerario. Activa el PIN en Ajustes para protegerlo.</div></div>';
+  h += '<section class="card"><h3>Viajeros</h3><form data-form="traveler" class="form">' + f.t('Nombre', 'name', '', 'text', 'required') + f.t('Nacionalidad', 'nat') + '<button class="btn sm" style="align-self:end" type="submit">Agregar viajero</button></form>' + (S.travelers.length ? S.travelers.map(x => '<div class="row between"><span><b>' + esc(x.name) + '</b> <span class="small muted">' + esc(x.nat || '') + '</span></span><button class="btn sm danger" data-act="deltr" data-id="' + x.id + '">Quitar</button></div>').join('') : '<p class="small muted">Sin viajeros todavía.</p>') + '</section>';
+  h += '<section class="card"><h3>Presupuesto estimado por categoría (COP)</h3><form data-form="budget" class="form">' + CATS.map((c, i) => b.t(c, 'b' + i, S.budgets[c] || '', 'number', 'min="0" step="any" inputmode="numeric"')).join('') + '<button class="btn pri full" type="submit">Guardar presupuestos</button></form></section>';
+  h += '<section class="card"><h3>Datos del viaje</h3><form data-form="trip" class="form">' + t.t('Nombre', 'name', S.trip.name, 'text', 'required', 'full') + t.t('Inicio', 'start', S.trip.start, 'date', 'required') + t.t('Fin', 'end', S.trip.end, 'date', 'required') + '<button class="btn pri full" type="submit">Guardar</button></form></section>';
+  h += '<section class="card"><div class="row between"><h3>Itinerario</h3><button class="btn sm pri" data-act="edit" data-id="new">Agregar actividad</button></div>' + S.days.map(d => '<div><b style="color:' + dcol(d.n) + '">Día ' + d.n + ' · ' + esc(d.title) + '</b>' + d.items.map((id, i) => { const p = S.places[id]; return p ? '<div class="row between" style="padding:6px 0;border-top:1px solid var(--line)"><span style="min-width:0">' + esc(p.name) + ' <span class="small muted">' + (p.time || '') + '</span></span><span class="row" style="gap:4px"><button class="btn sm" data-act="mv" data-id="' + id + '" data-d="-1" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>↑</button><button class="btn sm" data-act="mv" data-id="' + id + '" data-d="1" aria-label="Bajar"' + (i === d.items.length - 1 ? ' disabled' : '') + '>↓</button><button class="btn sm" data-act="edit" data-id="' + id + '">Editar</button></span></div>' : ''; }).join('') + '</div>').join('') + '</section>';
+  return h;
+}
+function tAjustes() {
+  const f = FF('pn');
+  let h = '<section class="card"><h3>Acceso con PIN</h3><p class="small muted">' + (S.pin ? 'El PIN está activo. Bloquea la app cuando prestes el teléfono.' : 'Crea un PIN de 4 a 8 dígitos. Protege el acceso a la app en este dispositivo; no cifra los archivos guardados.') + '</p>' + (S.pin ? '<div class="row"><button class="btn sm" data-act="lock">Bloquear ahora</button><button class="btn sm danger" data-act="rmpin">Quitar PIN</button></div>' : '<form data-form="pin" class="form">' + f.t('Nuevo PIN', 'pin', '', 'password', 'required inputmode="numeric" pattern="[0-9]{4,8}" autocomplete="new-password"') + '<div class="err full" id="pnerr"></div><button class="btn pri" type="submit" style="align-self:end">Activar PIN</button></form>') + '</section>';
+  h += '<section class="card"><h3>Copia de seguridad</h3><p class="small muted">' + (DB.persistent ? 'Tus datos se guardan en este dispositivo (IndexedDB) y funcionan sin conexión.' : 'Este navegador no permite guardado persistente: usa la copia de seguridad.') + ' Exporta un archivo para respaldar o pasar los datos a otro dispositivo. Los adjuntos no se incluyen.</p><div class="row"><button class="btn sm" data-act="export">Exportar copia</button></div><form data-form="import" class="stack"><label class="f"><span>Importar copia (pega el texto JSON)</span><textarea id="im_text" name="text"></textarea></label><div class="err" id="imerr"></div><button class="btn sm" type="submit">Importar</button></form></section>';
+  h += '<section class="card"><h3>Instalar en el celular</h3><p class="small">En Android (Chrome): menú ⋮ > Instalar aplicación. En iPhone (Safari): Compartir > Agregar a pantalla de inicio. Abre la app una vez con internet para que quede disponible sin conexión.</p>' + (deferredInstall ? '<button class="btn pri sm" data-act="install">Instalar ahora</button>' : '') + '</section>';
+  h += '<section class="card"><h3>Integraciones</h3><ul class="small" style="margin:0;padding-left:18px"><li>Clima: Open-Meteo (sin clave).</li><li>Divisas: open.er-api.com (sin clave).</li><li>Rutas reales: enlaces a Google Maps (sin clave).</li><li>Mapa con calles incrustado, alertas de vuelos y ferry en vivo: requieren claves o servicios de terceros no configurados.</li></ul></section>';
+  h += '<section class="card"><h3>Borrar todo</h3>' + (ui.confirmReset ? '<p class="err">Se borrarán todos los datos de este dispositivo. ¿Seguro?</p><div class="row"><button class="btn danger sm" data-act="reset2">Sí, borrar todo</button><button class="btn sm" data-act="reset0">Cancelar</button></div>' : '<button class="btn danger sm" data-act="reset1">Restablecer app</button>') + '</section>';
+  return h;
+}
+function sosHTML() {
+  return '<div class="row between"><h2>Emergencia</h2><button class="btn sm" data-act="close">Cerrar</button></div><div class="stack"><div class="row between"><span>Policía / emergencias</span><b class="num" style="font-size:1.4rem">911</b></div><div class="row between"><span>Ambulancia (SAME)</span><b class="num" style="font-size:1.4rem">107</b></div><div class="row between"><span>Bomberos</span><b class="num" style="font-size:1.4rem">100</b></div><div class="row between"><span>Policía Turística</span><b class="num">0800-999-5000</b></div></div><p class="small muted">Confirma estos números antes del viaje.</p>' + (S.contacts.length ? '<h3>Tus contactos</h3>' + S.contacts.map(c => '<div class="row between"><span>' + esc(c.name) + '</span><b class="num">' + esc(c.phone) + '</b></div>').join('') : '<p class="small muted">Agrega contactos en Mi viaje > Reservas y documentos.</p>');
+}
+
+'use strict';
+/* ====== ACCIONES, FORMULARIOS Y ARRANQUE ====== */
+let deferredInstall = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredInstall = e; });
+
+function shell() {
+  $('#app').innerHTML = '<div class="banner" id="off">Sin conexión: el itinerario, las listas y los gastos siguen funcionando. Mapas reales, clima y divisas necesitan internet.</div>' +
+    '<div class="shell"><aside class="side"><div class="brand">ARGENTINA EXPERIENCE 2026<small>Buenos Aires · Uruguay · Iguazú</small></div><nav aria-label="Principal">' +
+    ROUTES.map(r => '<a href="#' + r[0] + '" data-r="' + r[0] + '">' + ic(r[2]) + r[1] + '</a>').join('') + '</nav><div class="foot">6 al 11 de diciembre de 2026</div></aside><main id="main"></main></div>' +
+    '<nav class="bottom" aria-label="Principal">' + ROUTES.map(r => '<a href="#' + r[0] + '" data-r="' + r[0] + '">' + ic(r[2]) + '<span>' + r[1] + '</span></a>').join('') + '</nav><div id="modal" role="dialog" aria-modal="true"></div><div id="toast" role="status"></div>';
+  updOnline();
+}
+function updOnline() { const b = $('#off'); if (b) b.classList.toggle('show', !navigator.onLine); }
+function lockScreen(msg) {
+  $('#app').innerHTML = '<div class="lock"><div class="card"><span class="eyebrow">Argentina Experience 2026</span><h2>Ingresa tu PIN</h2><form data-form="unlock" class="stack"><label class="f"><span>PIN</span><input id="ul_pin" name="pin" type="password" inputmode="numeric" autocomplete="current-password" required></label><div class="err" id="ulerr">' + esc(msg || '') + '</div><button class="btn pri" type="submit">Entrar</button></form></div></div>';
+  const i = $('#ul_pin'); if (i) i.focus();
+}
+function render() {
+  if (S.pin && !ui.unlocked) { lockScreen(); return; }
+  if (!$('#main')) shell();
+  const r = route(); const m = $('#main');
+  const map = {inicio: vInicio, itinerario: vItin, mapa: vMapa, gastos: vGastos, 'mi-viaje': vViaje};
+  m.innerHTML = map[r]();
+  $$('[data-r]').forEach(a => { if (a.dataset.r === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  const md = $('#modal');
+  if (ui.modal) { md.className = 'open'; md.innerHTML = '<div class="scrim" data-act="close"></div><div class="sheet">' + (ui.modal.t === 'ficha' ? fichaHTML(ui.modal.id) : ui.modal.t === 'edit' ? editHTML(ui.modal.id) : sosHTML()) + '</div>'; }
+  else { md.className = ''; md.innerHTML = ''; }
+  hydrate();
+}
+function go(r) { if (location.hash === '#' + r) render(); else location.hash = '#' + r; }
+function openFile(fid) {
+  fileURL(fid).then(u => { if (!u) { toast('Archivo no encontrado en este dispositivo.'); return; } const a = document.createElement('a'); a.href = u; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); });
+}
+function removeFiles(ids) { ids.filter(Boolean).forEach(id => { DB.del('files', id); delete urlCache[id]; }); }
+
+const ACT = {
+  close() { ui.modal = null; render(); },
+  ficha(t) { ui.modal = {t: 'ficha', id: t.dataset.id}; render(); },
+  edit(t) { ui.modal = {t: 'edit', id: t.dataset.id}; render(); },
+  sos() { ui.modal = {t: 'sos'}; render(); },
+  tab(t) { ui.tab = t.dataset.v; ui.modal = null; go('mi-viaje'); },
+  setday(t) { ui.day = +t.dataset.n; if (route() === 'itinerario') render(); },
+  mapday(t) { ui.map = t.dataset.v === 'all' ? 'all' : +t.dataset.v; ui.mapSel = null; if (route() === 'mapa') render(); },
+  selmap(t) { ui.mapSel = t.dataset.id; render(); },
+  done(t) { S.done[t.dataset.id] = !S.done[t.dataset.id]; save(); render(); },
+  optimize(t) {
+    const d = dayOf(t.dataset.n), list = dayPlaces(d), opt = optimizeOrder(list), a = totalKm(list), b = totalKm(opt);
+    if (b >= a - 0.05) { toast('El orden actual ya es eficiente (' + a.toFixed(1) + ' km).'); return; }
+    S.prevOrder[d.n] = d.items.slice(); d.items = opt.map(p => p.id); save(); render(); toast('Ahorras ~' + (a - b).toFixed(1) + ' km en línea recta.');
+  },
+  rain(t) {
+    const d = dayOf(t.dataset.n), list = dayPlaces(d); S.prevOrder[d.n] = d.items.slice();
+    d.items = list.filter(p => !p.outdoor).concat(list.filter(p => p.outdoor)).map(p => p.id); save(); render(); toast('Actividades bajo techo primero. Puedes restaurar el orden.');
+  },
+  restore(t) { const d = dayOf(t.dataset.n); if (S.prevOrder[d.n]) { d.items = S.prevOrder[d.n]; delete S.prevOrder[d.n]; save(); render(); toast('Orden original restaurado.'); } },
+  addalt(t) {
+    const d = dayOf(t.dataset.n), a = RAIN_ALTS[d.n][+t.dataset.i], id = uid('p');
+    S.places[id] = MIN(id, d.n, a.name, a.lat, a.lng, 'Ver en el mapa (confirma la dirección)', a.note, 'Alternativa bajo techo.', 60, '—', 'Confirma horarios y tarifas antes de ir.', {outdoor: false, alert: 'Alternativa agregada: horarios y tarifas ' + PEND.toLowerCase() + '.'});
+    d.items.push(id); save(); render(); toast('Agregado al día ' + d.n + '.');
+  },
+  gps() {
+    if (!navigator.geolocation) { toast('Este dispositivo no ofrece ubicación.'); return; }
+    navigator.geolocation.getCurrentPosition(p => { ui.me = {lat: p.coords.latitude, lng: p.coords.longitude}; render(); toast('Ubicación obtenida.'); }, () => toast('No se pudo obtener la ubicación: revisa el permiso del navegador.'), {timeout: 10000});
+  },
+  weather() { toast('Consultando clima…'); loadWeather().then(() => { render(); toast('Clima actualizado.'); }).catch(() => toast('Sin conexión o servicio no disponible. Se muestran los últimos datos guardados.')); },
+  rates() { toast('Consultando tasas…'); loadRates().then(() => { render(); toast('Tasas actualizadas.'); }).catch(() => toast('Sin conexión o servicio no disponible.')); },
+  delexp(t) { S.expenses = S.expenses.filter(x => x.id !== t.dataset.id); save(); render(); },
+  delbook(t) { const b = S.bookings.find(x => x.id === t.dataset.id); if (b) removeFiles([b.fileId]); S.bookings = S.bookings.filter(x => x.id !== t.dataset.id); save(); render(); },
+  deldoc(t) { const b = S.docs.find(x => x.id === t.dataset.id); if (b) removeFiles([b.fileId]); S.docs = S.docs.filter(x => x.id !== t.dataset.id); save(); render(); },
+  delfl(t) { S.flights = S.flights.filter(x => x.id !== t.dataset.id); save(); render(); },
+  delcontact(t) { S.contacts = S.contacts.filter(x => x.id !== t.dataset.id); save(); render(); },
+  deldiary(t) { const b = S.diary.find(x => x.id === t.dataset.id); if (b) removeFiles([b.photoId]); S.diary = S.diary.filter(x => x.id !== t.dataset.id); save(); render(); },
+  deltr(t) { S.travelers = S.travelers.filter(x => x.id !== t.dataset.id); delete S.mig[t.dataset.id]; save(); render(); },
+  deluy(t) { S.uy.sights.splice(+t.dataset.i, 1); save(); render(); },
+  delchk(t) { const g = S.checklist[t.dataset.g]; if (g) S.checklist[t.dataset.g] = g.filter(i => i.id !== t.dataset.id); save(); render(); },
+  openfile(t) { openFile(t.dataset.fid); },
+  mv(t) {
+    const p = S.places[t.dataset.id], d = dayOf(p.day), i = d.items.indexOf(p.id), j = i + (+t.dataset.d);
+    if (j < 0 || j >= d.items.length) return; d.items.splice(i, 1); d.items.splice(j, 0, p.id); delete S.prevOrder[d.n]; save(); render();
+  },
+  delplace(t) {
+    const id = t.dataset.id, p = S.places[id]; if (!p) return; const d = dayOf(p.day); if (d) d.items = d.items.filter(x => x !== id);
+    removeFiles([p.photoId]); delete S.places[id]; ui.modal = null; save(); render(); toast('Actividad eliminada.');
+  },
+  lock() { ui.unlocked = false; render(); },
+  rmpin() { S.pin = null; save(); render(); toast('PIN eliminado.'); },
+  export() {
+    const txt = JSON.stringify(S, null, 1);
+    try { const b = new Blob([txt], {type: 'application/json'}), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'argentina-experience-2026.json'; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => toast('Copia generada y copiada al portapapeles.'), () => toast('Copia generada. Si no se descargó, copia el texto manualmente.'));
+    else toast('Copia generada.');
+  },
+  install() { if (deferredInstall) { deferredInstall.prompt(); deferredInstall = null; } },
+  reset1() { ui.confirmReset = true; render(); },
+  reset0() { ui.confirmReset = false; render(); },
+  reset2() { S = SEED(); ui.confirmReset = false; ui.unlocked = false; DB.put('kv', 'state', JSON.parse(JSON.stringify(S))); render(); toast('App restablecida.'); }
+};
+const CHG = {
+  done(t) { S.done[t.dataset.id] = t.checked; save(); render(); },
+  chk(t) { const i = (S.checklist[t.dataset.g] || []).find(x => x.id === t.dataset.id); if (i) { i.done = t.checked; save(); render(); } },
+  mig(t) { (S.mig[t.dataset.t] = S.mig[t.dataset.t] || {})[t.dataset.k] = t.checked; save(); },
+  igst(t) { S.igStatus[t.dataset.id] = t.value; save(); toast('Estado guardado.'); },
+  bkstatus(t) { const b = S.bookings.find(x => x.id === t.dataset.id); if (b) { b.status = t.value; save(); render(); } }
+};
+
+/* ---- formularios ---- */
+const val = (f, n) => f.elements[n] ? String(f.elements[n].value).trim() : '';
+const setErr = (id, m) => { const e = document.getElementById(id); if (e) e.textContent = m; };
+const FORMS = {
+  async expense(f) {
+    const desc = val(f, 'desc'), amount = parseFloat(val(f, 'amount')), split = Array.from(f.querySelectorAll('input[name=split]:checked')).map(x => x.value);
+    if (!desc) return setErr('exerr', 'Escribe una descripción.');
+    if (!(amount > 0)) return setErr('exerr', 'El monto debe ser mayor que cero.');
+    if (!val(f, 'date')) return setErr('exerr', 'Elige la fecha.');
+    if (!split.length) return setErr('exerr', 'Elige al menos un viajero para dividir.');
+    S.expenses.push({id: uid('e'), desc, amount, cur: val(f, 'cur'), cat: val(f, 'cat'), date: val(f, 'date'), payer: val(f, 'payer'), split});
+    save(); render(); toast('Gasto guardado.');
+  },
+  conv(f) {
+    const a = parseFloat(val(f, 'a')), from = val(f, 'from'), to = val(f, 'to'), o = $('#convout');
+    if (!(a >= 0)) { o.textContent = 'Ingresa un monto válido.'; return; }
+    const cop = toCOP(a, from); const r = S.rates && S.rates.r;
+    if (cop == null || (to !== 'COP' && !(r && r[to]))) { o.textContent = 'Requiere conexión: carga la tasa de cambio primero.'; return; }
+    o.textContent = money(a, from) + ' ≈ ' + money(to === 'COP' ? cop : cop * r[to], to);
+  },
+  async booking(f) {
+    const name = val(f, 'name'); if (!name) return setErr('bkerr', 'Escribe el nombre del servicio.');
+    let fileId = null; try { fileId = await putFile(f.elements.file.files[0]); } catch (e) { return setErr('bkerr', e.message); }
+    S.bookings.push({id: uid('b'), name, cat: val(f, 'cat'), status: val(f, 'status'), date: val(f, 'date'), time: val(f, 'time'), code: val(f, 'code'), addr: val(f, 'addr'), fileId});
+    save(); render(); toast('Reserva guardada.');
+  },
+  async doc(f) {
+    const name = val(f, 'name'); if (!name) return setErr('dcerr', 'Escribe el nombre o titular.');
+    let fileId = null; try { fileId = await putFile(f.elements.file.files[0]); } catch (e) { return setErr('dcerr', e.message); }
+    S.docs.push({id: uid('d'), name, type: val(f, 'type'), fileId}); save(); render(); toast('Documento guardado en este dispositivo.');
+  },
+  contact(f) { S.contacts.push({id: uid('t'), name: val(f, 'name'), phone: val(f, 'phone')}); save(); render(); },
+  flight(f) {
+    if (!val(f, 'from') || !val(f, 'to')) return setErr('flerr', 'Indica origen y destino.');
+    S.flights.push({id: uid('v'), type: val(f, 'type'), no: val(f, 'no'), from: val(f, 'from'), to: val(f, 'to'), date: val(f, 'date'), time: val(f, 'time'), term: val(f, 'term'), code: val(f, 'code'), bags: val(f, 'bags')});
+    save(); render(); toast('Vuelo guardado.');
+  },
+  traveler(f) { S.travelers.push({id: uid('u'), name: val(f, 'name'), nat: val(f, 'nat')}); save(); render(); toast('Viajero agregado.'); },
+  budget(f) { CATS.forEach((c, i) => S.budgets[c] = parseFloat(val(f, 'b' + i)) || 0); save(); render(); toast('Presupuestos guardados.'); },
+  trip(f) { if (val(f, 'end') < val(f, 'start')) { toast('La fecha final no puede ser anterior al inicio.'); return; } S.trip = {name: val(f, 'name'), start: val(f, 'start'), end: val(f, 'end')}; save(); render(); toast('Datos guardados.'); },
+  chk(f) { const g = val(f, 'g'); S.checklist[g].push({id: uid('c'), text: val(f, 'text'), done: false}); save(); render(); },
+  uy(f) {
+    const u = S.uy, pk = val(f, 'port'), dk = val(f, 'dest'), po = URY_PORTS.find(x => x.k === pk), de = URY_DESTS.find(x => x.k === dk);
+    u.portK = pk; u.port = po ? {lat: po.lat, lng: po.lng} : null; u.destK = dk; u.dest = de ? {lat: de.lat, lng: de.lng} : null; u.destName = de ? de.n : '';
+    u.arrive = val(f, 'arrive'); u.company = val(f, 'company'); u.out = val(f, 'out'); u.back = val(f, 'back'); u.res = val(f, 'res'); u.notes = val(f, 'notes');
+    const d3 = S.places; if (d3.p302) d3.p302.time = u.out; if (d3.p306) d3.p306.time = u.back;
+    save(); render(); toast('Datos de Uruguay guardados.');
+  },
+  uysight(f) { S.uy.sights.push({name: val(f, 'name'), time: val(f, 'time'), cost: val(f, 'cost')}); save(); render(); },
+  async diary(f) {
+    const text = val(f, 'text'); if (!text && !f.elements.file.files[0]) return setErr('drerr', 'Escribe algo o agrega una foto.');
+    let photoId = null; try { photoId = await putFile(f.elements.file.files[0]); } catch (e) { return setErr('drerr', e.message); }
+    S.diary.push({id: uid('r'), date: val(f, 'date'), text, photoId}); save(); render(); toast('Recuerdo guardado.');
+  },
+  async photo(f) {
+    const p = S.places[f.dataset.id], file = f.elements.file.files[0]; if (!file) { toast('Elige una imagen primero.'); return; }
+    try { const id = await putFile(file); removeFiles([p.photoId]); p.photoId = id; save(); render(); } catch (e) { toast(e.message); }
+  },
+  place(f) {
+    const id = f.dataset.id, name = val(f, 'name'); if (!name) { toast('Escribe un nombre.'); return; }
+    const lat = parseFloat(val(f, 'lat').replace(',', '.')), lng = parseFloat(val(f, 'lng').replace(',', '.'));
+    if ((val(f, 'lat') || val(f, 'lng')) && (isNaN(lat) || isNaN(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180)) { toast('Latitud y longitud no son válidas.'); return; }
+    const data = {name, day: +val(f, 'day'), time: val(f, 'time'), mins: parseInt(val(f, 'mins'), 10) || 0, addr: val(f, 'addr'), hours: val(f, 'hours'), price: val(f, 'price'), url: val(f, 'url'), needs: val(f, 'needs'), outdoor: val(f, 'outdoor') === '1', desc: val(f, 'desc'), see: val(f, 'see'), tips: val(f, 'tips'), alert: val(f, 'alert')};
+    if (data.url && !/^https?:\/\//i.test(data.url)) { toast('La URL debe empezar por http:// o https://'); return; }
+    if (!isNaN(lat) && !isNaN(lng)) { data.lat = lat; data.lng = lng; }
+    if (id === 'new') {
+      const nid = uid('p'); S.places[nid] = MIN(nid, data.day, name, data.lat == null ? null : data.lat, data.lng == null ? null : data.lng, data.addr, data.desc, data.see, data.mins, '—', data.tips, data); dayOf(data.day).items.push(nid);
+    } else {
+      const p = S.places[id], old = p.day; Object.assign(p, data);
+      if (old !== data.day) { dayOf(old).items = dayOf(old).items.filter(x => x !== id); dayOf(data.day).items.push(id); }
+    }
+    ui.modal = null; save(); render(); toast('Cambios guardados.');
+  },
+  async pin(f) {
+    const p = val(f, 'pin'); if (!/^\d{4,8}$/.test(p)) return setErr('pnerr', 'El PIN debe tener de 4 a 8 dígitos.');
+    const salt = uid('s'); S.pin = {salt, hash: await sha(salt + p)}; ui.unlocked = true; save(); render(); toast('PIN activado.');
+  },
+  async unlock(f) {
+    const p = val(f, 'pin'), h = await sha(S.pin.salt + p);
+    if (h === S.pin.hash) { ui.unlocked = true; $('#app').innerHTML = ''; render(); } else setErr('ulerr', 'PIN incorrecto.');
+  },
+  import(f) {
+    try {
+      const o = JSON.parse(val(f, 'text')); if (!o || !o.days || !o.places) throw new Error('x');
+      S = Object.assign(SEED(), o); save(); render(); toast('Copia importada.');
+    } catch (e) { setErr('imerr', 'El texto no es una copia válida de la app.'); }
+  }
+};
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-act]'); if (!t || !ACT[t.dataset.act]) return;
+  if (t.tagName === 'BUTTON' || t.tagName === 'g' || t.classList.contains('scrim')) e.preventDefault();
+  ACT[t.dataset.act](t, e);
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.tagName === 'g' && e.target.dataset.act) { e.preventDefault(); ACT[e.target.dataset.act](e.target, e); }
+  if (e.key === 'Escape' && ui.modal) ACT.close();
+});
+document.addEventListener('change', e => { const t = e.target.closest('[data-chg]'); if (t && CHG[t.dataset.chg]) CHG[t.dataset.chg](t); });
+document.addEventListener('input', e => { if (e.target.dataset && e.target.dataset.input === 'search') { ui.q = e.target.value; const r = $('#sr'); if (r) r.innerHTML = searchHTML(ui.q); } });
+document.addEventListener('submit', e => {
+  const f = e.target.closest('form[data-form]'); if (!f) return; e.preventDefault();
+  const fn = FORMS[f.dataset.form]; if (fn) Promise.resolve(fn(f)).catch(() => toast('No se pudo guardar. Intenta de nuevo.'));
+});
+window.addEventListener('hashchange', () => { ui.modal = null; render(); window.scrollTo(0, 0); });
+window.addEventListener('online', () => { updOnline(); if (S && !S.rates) loadRates().catch(() => {}); });
+window.addEventListener('offline', updOnline);
+
+(async function boot() {
+  await loadState();
+  if (!location.hash) { try { history.replaceState(null, '', '#inicio'); } catch (e) {} }
+  render();
+  setInterval(() => { const c = $('#cd'); if (c && S) c.innerHTML = cdHTML(); }, 30000);
+  if (navigator.onLine) { if (!S.weather || Date.now() - S.weather.ts > 6 * 36e5) loadWeather().then(() => { if (route() === 'inicio' || (route() === 'mi-viaje' && ui.tab === 'clima')) render(); }).catch(() => {}); if (!S.rates || Date.now() - S.rates.ts > 24 * 36e5) loadRates().catch(() => {}); }
+  if (window.__STANDALONE && 'serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+})();
+
+</script>
+</body>
+</html>
